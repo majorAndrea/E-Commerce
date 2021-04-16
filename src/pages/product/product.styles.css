@@ -1,0 +1,16 @@
+.product-name {
+  text-align: center;
+  margin: 0;
+}
+
+.list-group {
+  justify-content: center;
+}
+
+.product-color {
+  background-color: initial;
+}
+
+.product-color:hover {
+  background-color: #ececec;
+}

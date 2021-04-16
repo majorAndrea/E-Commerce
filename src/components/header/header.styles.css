@@ -1,0 +1,22 @@
+section:last-child span {
+  margin: 0 0.2rem;
+}
+
+#no-padding-x {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.user-display-name {
+  color: hsl(132, 61%, 41%);
+}
+
+.user-nav-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline
+}
+
+nav {
+  margin-bottom: 1rem;
+}
