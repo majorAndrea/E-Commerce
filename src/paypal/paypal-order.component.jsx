@@ -14,11 +14,19 @@ const PaypPalOrder = ({ amount }) => {
       ],
     });
   };
+  const onApprove = (data, actions) => {
+    return actions.order
+      .capture()
+      .then((details) =>
+        alert("Successfull payment by " + details.payer.name.given_name)
+      );
+  };
   return (
     <PayPalButtons
       createOrder={createOrder}
       forceReRender={[amount]}
       style={{ layout: "horizontal", color: "gold" }}
+      onApprove={onApprove}
     />
   );
 };
