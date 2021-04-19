@@ -11,6 +11,7 @@ import { isUserLoggedIn } from "./redux/user/user.actions.js";
 import Products from "./pages/products/products.component.jsx";
 import ProductContainer from "./pages/product/product.container.js";
 import Checkout from "./pages/checkout/checkout.component.jsx";
+import CheckoutConfirm from "./pages/checkout-confirm/checkout-confirm.component.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -30,6 +31,7 @@ const App = ({ currentUser, isUserLoggedIn }) => {
             render={() => (currentUser ? <Redirect to="/" /> : <SignInUp />)}
           />
           <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/checkout/:orderId/" component={CheckoutConfirm} />
           <Route exact path="/:superCategory/:category" component={Products} />
           <Route
             exact
