@@ -6,6 +6,8 @@ export const showCustomAlert = (details) => ({
   payload: details,
 });
 
+// Call this action on ComponentWillUnMount (or useEffect with cleanup function)
+// to hide the message when the user go to another page.
 export const hideCustomAlert = () => ({
   type: CustomAlertActionTypes.HIDE_CUSTOM_ALET,
 });

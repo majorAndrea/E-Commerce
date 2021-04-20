@@ -16,6 +16,8 @@ export const ProductDetailsContainer = styled.div`
   background-color: #f8f9fa;
   color: black;
   margin-bottom: 1rem;
+  margin-left: 0px;
+  margin-right: 0px;
 
   > :nth-child(2) {
     ${fontLargerAndLighter};

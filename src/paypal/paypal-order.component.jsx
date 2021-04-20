@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -10,7 +10,10 @@ import {
   checkoutProcessSuccess,
   checkoutProcessFail,
 } from "../redux/checkout/checkout.actions.js";
-import { showCustomAlert } from "../redux/custom-alert/custom-alert.actions.js";
+import {
+  showCustomAlert,
+  hideCustomAlert,
+} from "../redux/custom-alert/custom-alert.actions.js";
 import { checkoutStartSelector } from "../redux/checkout/checkout.selectors.js";
 
 const PaypPalOrder = ({
@@ -19,7 +22,13 @@ const PaypPalOrder = ({
   match,
   checkoutProcessSuccess,
   showCustomAlert,
+  hideCustomAlert,
 }) => {
+  // To hide error alert if showed.
+  useEffect(() => {
+    return () => hideCustomAlert();
+  }, [hideCustomAlert]);
+
   const createOrder = (data, actions) => {
     return actions.order.create({
       intent: "capture",
@@ -47,9 +56,9 @@ const PaypPalOrder = ({
 
   const onCancel = (data, actions) => {
     showCustomAlert({
-      display: true,
       title: "Payment aborted",
-      message: "You have aborted your payment.",
+      message: "You have aborted your payment. We didn't charge you any cost.",
+      // variant: "danger",
     });
   };
 
@@ -72,6 +81,7 @@ const mapDispatchToProps = (dispatch) => ({
   checkoutProcessFail: (details) => dispatch(checkoutProcessFail(details)),
   checkoutProcessCancel: (details) => dispatch(checkoutProcessCancel(details)),
   showCustomAlert: (details) => dispatch(showCustomAlert(details)),
+  hideCustomAlert: () => dispatch(hideCustomAlert()),
 });
 
 const mapStatsToProps = createStructuredSelector({

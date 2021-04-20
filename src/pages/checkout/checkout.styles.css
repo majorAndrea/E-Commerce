@@ -12,6 +12,8 @@
   background-color: #f8f9fa;
   color: black;
   text-align: center;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .checkout-header .col:first-child {
@@ -32,6 +34,8 @@
   font-size: x-large;
   font-weight: lighter;
   text-align: center;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .checkout-footer .col:last-child {
@@ -53,6 +57,8 @@
   font-size: x-large;
   font-weight: lighter;
   text-align: center;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .checkout-pay-methods .col:last-child {

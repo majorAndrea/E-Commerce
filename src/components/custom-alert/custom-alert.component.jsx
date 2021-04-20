@@ -2,13 +2,13 @@ import React from "react";
 import Alert from "react-bootstrap/Alert";
 
 const CustomAlert = ({
-  customAlert: { message, title, display },
+  customAlert: { message, title, display, variant },
   hideCustomAlert,
 }) => {
   return (
     <Alert
       show={display}
-      variant="danger"
+      variant={variant}
       onClose={() => hideCustomAlert()}
       dismissible
     >
