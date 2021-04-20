@@ -10,9 +10,16 @@ import {
   checkoutProcessSuccess,
   checkoutProcessFail,
 } from "../redux/checkout/checkout.actions.js";
+import { showCustomAlert } from "../redux/custom-alert/custom-alert.actions.js";
 import { checkoutStartSelector } from "../redux/checkout/checkout.selectors.js";
 
-const PaypPalOrder = ({ amount, history, match, checkoutProcessSuccess }) => {
+const PaypPalOrder = ({
+  amount,
+  history,
+  match,
+  checkoutProcessSuccess,
+  showCustomAlert,
+}) => {
   const createOrder = (data, actions) => {
     return actions.order.create({
       intent: "capture",
@@ -25,18 +32,35 @@ const PaypPalOrder = ({ amount, history, match, checkoutProcessSuccess }) => {
       ],
     });
   };
+
   const onApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
       checkoutProcessSuccess(details);
       history.push(`${match.url}/${details.id}`);
     });
   };
+
+  const onError = (err) => {
+    alert(err);
+    console.log(err);
+  };
+
+  const onCancel = (data, actions) => {
+    showCustomAlert({
+      display: true,
+      title: "Payment aborted",
+      message: "You have aborted your payment.",
+    });
+  };
+
   return (
     <PayPalButtons
       createOrder={createOrder}
       forceReRender={[amount]}
       style={{ layout: "horizontal", color: "gold" }}
       onApprove={onApprove}
+      onError={onError}
+      onCancel={onCancel}
     />
   );
 };
@@ -47,6 +71,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(checkoutProcessSuccess(details)),
   checkoutProcessFail: (details) => dispatch(checkoutProcessFail(details)),
   checkoutProcessCancel: (details) => dispatch(checkoutProcessCancel(details)),
+  showCustomAlert: (details) => dispatch(showCustomAlert(details)),
 });
 
 const mapStatsToProps = createStructuredSelector({

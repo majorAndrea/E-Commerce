@@ -36,7 +36,7 @@ const Header = ({ currentUser }) => {
               {currentUser ? (
                 <Nav.Item>
                   <Navbar.Text>
-                    Welcome Back, 
+                    Welcome Back,
                     <span
                       className="user-display-name"
                       onClick={() => auth.signOut()}

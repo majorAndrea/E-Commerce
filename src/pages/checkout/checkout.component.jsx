@@ -12,7 +12,6 @@ import Row from "react-bootstrap/Row";
 import "./checkout.styles.css";
 
 const Checkout = ({ cartProducts, cartTotal }) => {
-  console.log(cartTotal);
   return (
     <section className="checkout-container">
       <Row className="checkout-header">
