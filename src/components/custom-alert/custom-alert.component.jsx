@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Alert from "react-bootstrap/Alert";
+import { CustomAlertContext } from "../../providers/custom-alert/custom-alert.provider.jsx";
 
-const CustomAlert = ({
-  customAlert: { message, title, display, variant },
-  hideCustomAlert,
-}) => {
+const CustomAlert = () => {
+  const { alertDetails, setAlertDetails } = useContext(CustomAlertContext);
   return (
     <Alert
-      show={display}
-      variant={variant}
-      onClose={() => hideCustomAlert()}
+      show={alertDetails.display}
+      variant={alertDetails.variant}
+      onClose={() => setAlertDetails({ ...alertDetails, display: false })}
       dismissible
     >
-      <Alert.Heading>{title}</Alert.Heading>
-      <p>{message}</p>
+      <Alert.Heading>{alertDetails.title}</Alert.Heading>
+      <p>{alertDetails.message}</p>
     </Alert>
   );
 };

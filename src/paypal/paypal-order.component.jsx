@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -10,24 +10,16 @@ import {
   checkoutProcessSuccess,
   checkoutProcessFail,
 } from "../redux/checkout/checkout.actions.js";
-import {
-  showCustomAlert,
-  hideCustomAlert,
-} from "../redux/custom-alert/custom-alert.actions.js";
 import { checkoutStartSelector } from "../redux/checkout/checkout.selectors.js";
+import { CustomAlertContext } from "../providers/custom-alert/custom-alert.provider.jsx";
 
-const PaypPalOrder = ({
-  amount,
-  history,
-  match,
-  checkoutProcessSuccess,
-  showCustomAlert,
-  hideCustomAlert,
-}) => {
+const PaypPalOrder = ({ amount, history, match, checkoutProcessSuccess }) => {
+  const { alertDetails, setAlertDetails } = useContext(CustomAlertContext);
+
   // To hide error alert if showed.
   useEffect(() => {
-    return () => hideCustomAlert();
-  }, [hideCustomAlert]);
+    return () => setAlertDetails({ ...alertDetails, display: false });
+  }, [setAlertDetails, alertDetails]);
 
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -55,10 +47,11 @@ const PaypPalOrder = ({
   };
 
   const onCancel = (data, actions) => {
-    showCustomAlert({
-      title: "Payment aborted",
+    setAlertDetails({
+      display: true,
+      title: "Payment Aborted",
       message: "You have aborted your payment. We didn't charge you any cost.",
-      // variant: "danger",
+      variant: "danger",
     });
   };
 
@@ -80,8 +73,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(checkoutProcessSuccess(details)),
   checkoutProcessFail: (details) => dispatch(checkoutProcessFail(details)),
   checkoutProcessCancel: (details) => dispatch(checkoutProcessCancel(details)),
-  showCustomAlert: (details) => dispatch(showCustomAlert(details)),
-  hideCustomAlert: () => dispatch(hideCustomAlert()),
 });
 
 const mapStatsToProps = createStructuredSelector({
