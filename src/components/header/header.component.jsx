@@ -1,19 +1,19 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
 import CartDropDownContainer from "../cart-dropdown/cart-dropdown.container.jsx";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selectors.js";
 import { auth } from "../../firebase";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Container from "react-bootstrap/Container";
 import "./header.styles.css";
 
 const Header = ({ currentUser }) => {
   return (
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-      <Container id="no-padding-x">
+      <Container>
         <Navbar.Brand>eCommerce</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

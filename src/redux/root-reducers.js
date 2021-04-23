@@ -5,7 +5,6 @@ import userReducers from "./user/user.reducers.js";
 import cartReducers from "./cart/cart.reducers.js";
 import productsReducer from "./products/products.reducers.js";
 import checkoutReducer from "./checkout/checkout.reducers.js";
-import customAlertReducer from "./custom-alert/custom-alert.reducers.js";
 
 const persistConfig = {
   key: "root",
@@ -18,7 +17,6 @@ const rootReducer = combineReducers({
   cart: cartReducers,
   products: productsReducer,
   checkout: checkoutReducer,
-  customAlert: customAlertReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

@@ -14,12 +14,12 @@ import { checkoutStartSelector } from "../redux/checkout/checkout.selectors.js";
 import { CustomAlertContext } from "../providers/custom-alert/custom-alert.provider.jsx";
 
 const PaypPalOrder = ({ amount, history, match, checkoutProcessSuccess }) => {
-  const { alertDetails, setAlertDetails } = useContext(CustomAlertContext);
+  const { setAlertDetails } = useContext(CustomAlertContext);
 
   // To hide error alert if showed.
   useEffect(() => {
-    return () => setAlertDetails({ ...alertDetails, display: false });
-  }, [setAlertDetails, alertDetails]);
+    return () => setAlertDetails({ display: false });
+  }, [setAlertDetails]);
 
   const createOrder = (data, actions) => {
     return actions.order.create({

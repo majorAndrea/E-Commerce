@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchDataStart } from "../../redux/products/products.actions.js";
 import CategoryContainer from "../../components/category/category.container.js";
+import Container from "react-bootstrap/Container";
 
 class Main extends React.Component {
   componentDidMount() {
@@ -11,10 +12,10 @@ class Main extends React.Component {
 
   render() {
     return (
-      <main>
+      <Container>
         <CategoryContainer categoryName="Technology" retrive="tech" />
         <CategoryContainer categoryName="Fashion" retrive="fashion" />
-      </main>
+      </Container>
     );
   }
 }

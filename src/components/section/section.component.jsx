@@ -23,8 +23,12 @@ const Section = ({
       ></div>
       {Object.keys(isProduct).length > 0 ? (
         <div className="product-details">
-          <p className="product-name">{isProduct.productName.toUpperCase() || "No Product Name"}</p>
-          <p className="product-desc">{isProduct.productDescription || "No Product Description"}</p>
+          <p className="product-name">
+            {isProduct.productName.toUpperCase() || "No Product Name"}
+          </p>
+          <p className="product-desc">
+            {isProduct.productDescription || "No Product Description"}
+          </p>
         </div>
       ) : (
         <p className="category-name">{sectionName.toUpperCase()}</p>

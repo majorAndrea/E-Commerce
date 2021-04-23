@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Main from "./pages/main/main.component";
 import Header from "./components/header/header.component";
-import Container from "react-bootstrap/Container";
 import SignInUp from "./pages/sign-in-up/sign-in-up.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -14,6 +13,7 @@ import Checkout from "./pages/checkout/checkout.component.jsx";
 import CheckoutConfirm from "./pages/checkout-confirm/checkout-confirm.component.jsx";
 import CustomAlert from "./components/custom-alert/custom-alert.component.jsx";
 import { CustomAlertProvider } from "./providers/custom-alert/custom-alert.provider.jsx";
+import Footer from "./components/footer/footer.component.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -22,37 +22,28 @@ const App = ({ currentUser, isUserLoggedIn }) => {
     isUserLoggedIn();
   }, [isUserLoggedIn]);
   return (
-    <div>
+    <div className="wrapper">
       <Header />
-      <Container as="main" className="main-container">
-        <CustomAlertProvider>
-          <CustomAlert />
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route
-              exact
-              path="/signin"
-              render={() => (currentUser ? <Redirect to="/" /> : <SignInUp />)}
-            />
-            <Route exact path="/checkout" component={Checkout} />
-            <Route
-              exact
-              path="/checkout/:orderId/"
-              component={CheckoutConfirm}
-            />
-            <Route
-              exact
-              path="/:superCategory/:category"
-              component={Products}
-            />
-            <Route
-              exact
-              path="/:superCategory/:category/:productId"
-              component={ProductContainer}
-            />
-          </Switch>
-        </CustomAlertProvider>
-      </Container>
+      <CustomAlertProvider>
+        <CustomAlert />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route
+            exact
+            path="/signin"
+            render={() => (currentUser ? <Redirect to="/" /> : <SignInUp />)}
+          />
+          <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/checkout/:orderId/" component={CheckoutConfirm} />
+          <Route exact path="/:superCategory/:category" component={Products} />
+          <Route
+            exact
+            path="/:superCategory/:category/:productId"
+            component={ProductContainer}
+          />
+        </Switch>
+      </CustomAlertProvider>
+      <Footer />
     </div>
   );
 };

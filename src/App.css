@@ -2,6 +2,15 @@
   box-sizing: border-box;
 }
 
-.main-container {
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
   padding: 0;
+}
+
+.main-container {
+  padding: 1rem 0;
 }

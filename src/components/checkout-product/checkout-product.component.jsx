@@ -17,7 +17,7 @@ const CheckoutProduct = ({
 }) => {
   const { background_image, name, price, qty } = product;
   return (
-    <ProductDetailsContainer as={Row}>
+    <ProductDetailsContainer>
       <ProductImageContainer as={Col}>
         <img src={background_image} alt="Product" />
       </ProductImageContainer>

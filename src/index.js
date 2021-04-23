@@ -10,15 +10,13 @@ import { store, persistor } from "./redux/store.js";
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <BrowserRouter>
-        <PersistGate persistor={persistor}>
-          <PayPalScriptProvider options={paypalOptions}>
-            <App />
-          </PayPalScriptProvider>
-        </PersistGate>
-      </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <PayPalScriptProvider options={paypalOptions}>
+          <App />
+        </PayPalScriptProvider>
+      </PersistGate>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
