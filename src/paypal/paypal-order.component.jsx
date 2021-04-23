@@ -10,10 +10,23 @@ import {
   checkoutProcessSuccess,
   checkoutProcessFail,
 } from "../redux/checkout/checkout.actions.js";
+import { selectCurrentUser } from "../redux/user/user.selectors.js";
+import {
+  selectCartProducts,
+  selectCartTotal,
+} from "../redux/cart/cart.selectors.js";
 import { checkoutStartSelector } from "../redux/checkout/checkout.selectors.js";
 import { CustomAlertContext } from "../providers/custom-alert/custom-alert.provider.jsx";
 
-const PaypPalOrder = ({ amount, history, match, checkoutProcessSuccess }) => {
+const PaypPalOrder = ({
+  amount,
+  history,
+  match,
+  checkoutProcessSuccess,
+  currentUser,
+  cartProducts,
+  cartTotal,
+}) => {
   const { setAlertDetails } = useContext(CustomAlertContext);
 
   // To hide error alert if showed.
@@ -36,6 +49,9 @@ const PaypPalOrder = ({ amount, history, match, checkoutProcessSuccess }) => {
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
+      // details.authorId = currentUser.id;
+      // details.products = cartProducts;
+      // details.total = cartTotal;
       checkoutProcessSuccess(details);
       history.push(`${match.url}/${details.id}`);
     });
@@ -77,6 +93,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStatsToProps = createStructuredSelector({
   checkoutStart: checkoutStartSelector,
+  currentUser: selectCurrentUser,
+  cartProducts: selectCartProducts,
+  cartTotal: selectCartTotal,
 });
 
 export default compose(

@@ -50,11 +50,14 @@ export const isUserLoggedIn = () => {
 };
 
 export const createCollectionsAndDocs = async (collectionKey, objects) => {
-  const collectionRef = firestore.collection(collectionKey);
-  const batch = firestore.batch();
-  Object.values(objects).forEach((object) => {
-    const newDocRef = collectionRef.doc();
-    batch.set(newDocRef, object);
+  return new Promise(async (resolve, reject) => {
+    const collectionRef = firestore.collection(collectionKey);
+    const batch = firestore.batch();
+    Object.values(objects).forEach((object) => {
+      const newDocRef = collectionRef.doc();
+      batch.set(newDocRef, object);
+    });
+    await batch.commit();
+    return resolve();
   });
-  return await batch.commit();
 };
