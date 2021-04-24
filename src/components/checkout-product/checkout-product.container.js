@@ -6,13 +6,16 @@ import {
   decreaseQtyProductFromCart,
 } from "../../redux/cart/cart.actions.js";
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   removeProductFromCart: (product) => dispatch(removeProductFromCart(product)),
   addProductToCart: (product) => dispatch(addProductToCart(product)),
   decreaseQtyProductFromCart: (product) =>
     dispatch(decreaseQtyProductFromCart(product)),
 });
 
-const CheckoutProductContainer = connect(null, mapDispatchToProps)(CheckoutProduct);
+const CheckoutProductContainer = connect(
+  null,
+  mapDispatchToProps
+)(CheckoutProduct);
 
 export default CheckoutProductContainer;

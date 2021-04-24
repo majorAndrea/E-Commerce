@@ -1,6 +1,7 @@
 import React from "react";
 import Section from "../../components/section/section.component.jsx";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
 import { getProductsOfCategorySelector } from "../../redux/products/products.selectors.js";
 
@@ -11,7 +12,7 @@ const Products = ({
   categoryProducts,
 }) => {
   return (
-    <div>
+    <Container as="article">
       <h2>
         {category.replace(category.charAt(0), category.charAt(0).toUpperCase())}
       </h2>
@@ -30,7 +31,7 @@ const Products = ({
           />
         ))}
       </Row>
-    </div>
+    </Container>
   );
 };
 

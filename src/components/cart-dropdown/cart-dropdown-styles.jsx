@@ -5,8 +5,10 @@ export const DropdownContainer = styled.section`
 `;
 
 export const DropdownMenuContainer = styled.div`
-  padding: .5rem !important;
+  padding: 0.5rem !important;
   position: absolute !important;
+  width: 275px;
+  min-width: 200px;
 `;
 
 export const ProductsCartWrapper = styled.section`
@@ -16,14 +18,14 @@ export const ProductsCartWrapper = styled.section`
 
 export const CartEmpty = styled.p`
   padding: 0;
-  margin: .10rem 0 .5rem 0;
+  margin: 0.1rem 0 0.5rem 0;
   text-align: center;
 `;
 
 export const CartTotal = styled.span`
   text-align: end !important;
-  padding: .1rem 0 !important;
-  margin: .5rem 0 !important;
+  padding: 0.1rem 0 !important;
+  margin: 0.5rem 0 !important;
   display: block;
   background-color: #f8f9fa;
 `;

@@ -52,6 +52,13 @@ const PaypPalOrder = ({
       // details.authorId = currentUser.id;
       // details.products = cartProducts;
       // details.total = cartTotal;
+      const productsBought = cartProducts.map((product) => ({
+        id: product.id,
+        name: product.name,
+        qty: product.qty,
+        price: product.price,
+      }));
+      details.products_bought = productsBought;
       checkoutProcessSuccess(details);
       history.push(`${match.url}/${details.id}`);
     });

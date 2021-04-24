@@ -12,7 +12,13 @@ import "./header.styles.css";
 
 const Header = ({ currentUser }) => {
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="md"
+      bg="dark"
+      variant="dark"
+      className="navbar-margin-bottom"
+    >
       <Container>
         <Navbar.Brand>eCommerce</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

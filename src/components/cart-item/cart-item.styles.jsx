@@ -6,8 +6,7 @@ export const ProductContainer = styled.section`
   justify-content: flex-start;
   padding: 0;
   margin-bottom: 0.5rem;
-  width: 25vh;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -16,8 +15,8 @@ export const ProductContainer = styled.section`
 export const ProductThumbnailContainer = styled.div`
   flex-basis: 35%;
   display: flex;
-  height: 64px;
-  margin-right: .2rem;
+  height: 68px;
+  margin-right: 0.2rem;
 `;
 
 export const ProductThumbnail = styled.img`
@@ -26,9 +25,8 @@ export const ProductThumbnail = styled.img`
 `;
 
 export const ProductInfo = styled.div`
-  flex-basis: 65%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size:smaller;
+  font-size: smaller;
 `;

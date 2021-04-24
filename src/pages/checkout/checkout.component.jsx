@@ -8,7 +8,6 @@ import {
 } from "../../redux/cart/cart.selectors.js";
 import CheckoutProductContainer from "../../components/checkout-product/checkout-product.container.js";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import "./checkout.styles.css";
 
@@ -36,7 +35,7 @@ const Checkout = ({ cartProducts, cartTotal }) => {
         <div className="checkout-pay-methods">
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
-          <Col aria-hidden>Checkout Now:</Col>
+          <Col aria-hidden>Pay Now:</Col>
           <Col>
             <PayPalOrder amount={cartTotal} />
           </Col>
