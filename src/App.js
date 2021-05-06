@@ -1,21 +1,30 @@
 import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Main from "./pages/main/main.component";
 import Header from "./components/header/header.component";
-import SignInUp from "./pages/sign-in-up/sign-in-up.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors.js";
 import { isUserLoggedIn } from "./redux/user/user.actions.js";
-import Products from "./pages/products/products.component.jsx";
-import ProductContainer from "./pages/product/product.container.js";
-import Checkout from "./pages/checkout/checkout.component.jsx";
-import CheckoutConfirm from "./pages/checkout-confirm/checkout-confirm.component.jsx";
 import CustomAlert from "./components/custom-alert/custom-alert.component.jsx";
 import { CustomAlertProvider } from "./providers/custom-alert/custom-alert.provider.jsx";
 import Footer from "./components/footer/footer.component.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+
+const Main = React.lazy(() => import("./pages/main/main.component"));
+const SignInUp = React.lazy(() =>
+  import("./pages/sign-in-up/sign-in-up.component")
+);
+const Checkout = React.lazy(() =>
+  import("./pages/checkout/checkout.component")
+);
+const CheckoutConfirm = React.lazy(() =>
+  import("./pages/checkout-confirm/checkout-confirm.component")
+);
+const Products = React.lazy(() =>
+  import("./pages/products/products.component")
+);
+const Product = React.lazy(() => import("./pages/product/product.container"));
 
 const App = ({ currentUser, isUserLoggedIn }) => {
   useEffect(() => {
@@ -26,22 +35,32 @@ const App = ({ currentUser, isUserLoggedIn }) => {
       <Header />
       <CustomAlertProvider>
         <CustomAlert />
-        <Switch>
-          <Route exact path="/" component={Main} />
-          <Route
-            exact
-            path="/signin"
-            render={() => (currentUser ? <Redirect to="/" /> : <SignInUp />)}
-          />
-          <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/checkout/:orderId/" component={CheckoutConfirm} />
-          <Route exact path="/:superCategory/:category" component={Products} />
-          <Route
-            exact
-            path="/:superCategory/:category/:productId"
-            component={ProductContainer}
-          />
-        </Switch>
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route
+              exact
+              path="/signin"
+              render={() => (currentUser ? <Redirect to="/" /> : <SignInUp />)}
+            />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route
+              exact
+              path="/checkout/:orderId/"
+              component={CheckoutConfirm}
+            />
+            <Route
+              exact
+              path="/:superCategory/:category"
+              component={Products}
+            />
+            <Route
+              exact
+              path="/:superCategory/:category/:productId"
+              component={Product}
+            />
+          </Switch>
+        </React.Suspense>
       </CustomAlertProvider>
       <Footer />
     </div>

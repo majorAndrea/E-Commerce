@@ -63,4 +63,4 @@ const CheckoutProduct = ({
   );
 };
 
-export default CheckoutProduct;
+export default React.memo(CheckoutProduct);

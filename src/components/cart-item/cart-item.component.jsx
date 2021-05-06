@@ -1,14 +1,15 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { ProductContainer, ProductThumbnailContainer, ProductThumbnail, ProductInfo } from "./cart-item.styles.jsx";
+import {
+  ProductContainer,
+  ProductThumbnailContainer,
+  ProductThumbnail,
+  ProductInfo,
+} from "./cart-item.styles.jsx";
 
 const CartItem = ({ productName, qty, price, image }) => {
   return (
-    <ProductContainer
-      as={Dropdown}
-      href="#/action-1"
-      id="product-container"
-    >
+    <ProductContainer as={Dropdown} href="#/action-1" id="product-container">
       <ProductThumbnailContainer>
         <ProductThumbnail src={image} alt="One item of the cart" />
       </ProductThumbnailContainer>
@@ -25,4 +26,4 @@ const CartItem = ({ productName, qty, price, image }) => {
   );
 };
 
-export default CartItem;
+export default React.memo(CartItem);
