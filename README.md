@@ -6,6 +6,7 @@ Tech used:
 
 - React
 - React Router DOM
+- Context API
 - Redux
 - Redux Saga
 - Redux Persist
