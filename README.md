@@ -1,6 +1,21 @@
 # E-Commerce
 
-My first project with React and many other technologies related to React (Redux, Sagas, Hooks, Firebase, Styled components...
-...and I don't even remember the others right now).
+My first front-end project with React.
 
-I will improve this project over time. (As I learn new things, I like to experiment with my own projects.
+Tech used:
+
+- React
+- React Router DOM
+- Redux
+- Redux Saga
+- Redux Persist
+- Firebase
+- React PayPal
+- Reselect
+- Boostrap
+- Styled Components
+
+There are some mixed technologies in this project because I have created this project while learning React, Firebase, etc. And I like to experiment
+when I learn new things because I am learn really well and fast when I practice.
+
+-> From time to time I update this project.
