@@ -9,38 +9,44 @@ import {
 import CheckoutProductContainer from "../../components/checkout-product/checkout-product.container.js";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import "./checkout.styles.css";
+
+import {
+  CheckoutContainer,
+  CheckoutHeader,
+  CheckoutFooter,
+  CheckoutPayMethods,
+} from "./checkout.styles";
 
 const Checkout = ({ cartProducts, cartTotal }) => {
   return (
     <Container>
-      <section className="checkout-container">
-        <div className="checkout-header">
+      <CheckoutContainer>
+        <CheckoutHeader>
           <Col>Preview</Col>
           <Col>Name</Col>
           <Col>Price</Col>
           <Col>Quantity</Col>
           <Col>Remove</Col>
-        </div>
+        </CheckoutHeader>
         {cartProducts.map((product) => (
           <CheckoutProductContainer key={product.id} product={product} />
         ))}
-        <div className="checkout-footer">
+        <CheckoutFooter>
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
           <Col>Total:</Col>
           <Col className="cart-total">&euro; {cartTotal}</Col>
-        </div>
-        <div className="checkout-pay-methods">
+        </CheckoutFooter>
+        <CheckoutPayMethods>
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
           <Col aria-hidden>Pay Now:</Col>
           <Col>
             <PayPalOrder amount={cartTotal} />
           </Col>
-        </div>
-      </section>
+        </CheckoutPayMethods>
+      </CheckoutContainer>
     </Container>
   );
 };

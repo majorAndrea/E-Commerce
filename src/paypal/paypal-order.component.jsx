@@ -23,9 +23,7 @@ const PaypPalOrder = ({
   history,
   match,
   checkoutProcessSuccess,
-  currentUser,
   cartProducts,
-  cartTotal,
 }) => {
   const { setAlertDetails } = useContext(CustomAlertContext);
 
@@ -49,16 +47,7 @@ const PaypPalOrder = ({
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
-      // details.authorId = currentUser.id;
-      // details.products = cartProducts;
-      // details.total = cartTotal;
-      const productsBought = cartProducts.map((product) => ({
-        id: product.id,
-        name: product.name,
-        qty: product.qty,
-        price: product.price,
-      }));
-      details.products_bought = productsBought;
+      details.products_bought = cartProducts;
       checkoutProcessSuccess(details);
       history.push(`${match.url}/${details.id}`);
     });

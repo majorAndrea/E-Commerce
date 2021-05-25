@@ -15,13 +15,22 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.REMOVE_PRODUCT_FROM_CART:
       return {
         ...state,
-        cartProducts: state.cartProducts.filter(product => product.id !== action.payload.id)
-      }
+        cartProducts: state.cartProducts.filter(
+          (product) => product.id !== action.payload.id
+        ),
+      };
     case CartActionTypes.DECREASE_QTY_PRODUCT_FROM_CART:
       return {
         ...state,
-        cartProducts: decreaseQtyProductFromCart(state.cartProducts, action.payload)
-      }
+        cartProducts: decreaseQtyProductFromCart(
+          state.cartProducts,
+          action.payload
+        ),
+      };
+    case CartActionTypes.EMPTY_CART:
+      return {
+        cartProducts: [],
+      };
     default:
       return state;
   }
