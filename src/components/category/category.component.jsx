@@ -15,7 +15,7 @@ const Category = ({ categoryName, productsFiltered }) => {
               sectionName={category.categoryName}
               buttonText="All &rarr;"
               background={category.background_image}
-              buttonUrl={`${category.superCategory}/${category.categoryName}`}
+              url={`${category.superCategory}/${category.categoryName}`}
             />
           );
         })}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const DEFAULT_VALUES = {
+export const DEFAULT_VALUES = {
   display: false,
   title: "No Title",
   message: "No Message",

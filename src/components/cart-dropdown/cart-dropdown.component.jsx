@@ -1,6 +1,6 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import DropdownMenu from "react-bootstrap/DropdownMenu"
+import DropdownMenu from "react-bootstrap/DropdownMenu";
 import CartItem from "../cart-item/cart-item.component";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
@@ -13,6 +13,7 @@ import {
 } from "./cart-dropdown-styles.jsx";
 
 const CartDropDown = ({ cartProducts, cartTotal, cartQty, history }) => {
+  const cartProductsLength = cartProducts.length;
   return (
     <DropdownContainer as={Dropdown}>
       <Dropdown.Toggle variant="success" size="sm" id="cart-dropdown-button">
@@ -20,7 +21,7 @@ const CartDropDown = ({ cartProducts, cartTotal, cartQty, history }) => {
       </Dropdown.Toggle>
       <DropdownMenuContainer as={DropdownMenu} align="right">
         <ProductsCartWrapper>
-          {cartProducts.length ? (
+          {cartProductsLength ? (
             cartProducts.map((product) => (
               <CartItem
                 key={product.id}
@@ -34,18 +35,24 @@ const CartDropDown = ({ cartProducts, cartTotal, cartQty, history }) => {
             <CartEmpty>Your cart is empty.</CartEmpty>
           )}
         </ProductsCartWrapper>
-        {cartProducts.length ? (
+        {cartProductsLength ? (
           <CartTotal>Total: &euro; {cartTotal}</CartTotal>
         ) : null}
-        <Button
-          block
-          variant="dark"
-          onClick={() => {
-            history.push("/checkout");
-          }}
-        >
-          Checkout
-        </Button>
+        {cartProductsLength ? (
+          <Button
+            block
+            variant="dark"
+            onClick={() => {
+              history.push("/checkout");
+            }}
+          >
+            Checkout
+          </Button>
+        ) : (
+          <Button block variant="dark" disabled>
+            Checkout
+          </Button>
+        )}
       </DropdownMenuContainer>
     </DropdownContainer>
   );

@@ -1,7 +1,8 @@
 import React from "react";
-import Section from "../../components/section/section.component.jsx";
-import Row from "react-bootstrap/Row";
+import Product from "../../components/product/product.component";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { connect } from "react-redux";
 import { getProductsOfCategorySelector } from "../../redux/products/products.selectors.js";
 
@@ -16,19 +17,12 @@ const Products = ({
       <h2>
         {category.replace(category.charAt(0), category.charAt(0).toUpperCase())}
       </h2>
-      <Row as="section">
+
+      <Row xs={1} md={3}>
         {categoryProducts.map((item) => (
-          <Section
-            key={item.id}
-            background={item.background_image}
-            buttonColor="success"
-            buttonText="See more"
-            buttonUrl={"/" + item.id}
-            isProduct={{
-              productName: item.name,
-              productDescription: item.description,
-            }}
-          />
+          <Col as="section">
+            <Product key={item.id} item={item} />
+          </Col>
         ))}
       </Row>
     </Container>

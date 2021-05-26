@@ -16,7 +16,10 @@ import {
   selectCartTotal,
 } from "../redux/cart/cart.selectors.js";
 import { checkoutStartSelector } from "../redux/checkout/checkout.selectors.js";
-import { CustomAlertContext } from "../providers/custom-alert/custom-alert.provider.jsx";
+import {
+  CustomAlertContext,
+  DEFAULT_VALUES,
+} from "../providers/custom-alert/custom-alert.provider.jsx";
 
 const PaypPalOrder = ({
   amount,
@@ -29,7 +32,7 @@ const PaypPalOrder = ({
 
   // To hide error alert if showed.
   useEffect(() => {
-    return () => setAlertDetails({ display: false });
+    return () => setAlertDetails({ ...DEFAULT_VALUES });
   }, [setAlertDetails]);
 
   const createOrder = (data, actions) => {
@@ -54,8 +57,14 @@ const PaypPalOrder = ({
   };
 
   const onError = (err) => {
-    alert(err);
-    console.log(err);
+    setAlertDetails({
+      display: true,
+      title: "Payment Error",
+      message: `There is an error with your payment. We didn't charge you any cost.
+        Details: ${err}
+        `,
+      variant: "danger",
+    });
   };
 
   const onCancel = (data, actions) => {
