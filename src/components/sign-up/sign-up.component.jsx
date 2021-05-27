@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { connect } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { signUpStart } from "../../redux/user/user.actions.js";
+import {
+  CustomAlertContext,
+  DEFAULT_VALUES,
+} from "../../providers/custom-alert/custom-alert.provider";
 
-class SignUp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displayName: "",
-      email: "",
-      password: "",
-      confirm_password: "",
-    };
-  }
+const SignUp = ({ signUpStart }) => {
+  const [userDetails, setUserDetails] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
+  const { setAlertDetails } = useContext(CustomAlertContext);
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
+  useEffect(() => {
+    return () => setAlertDetails({ ...DEFAULT_VALUES });
+  }, [setAlertDetails]);
 
-  validate(type, data) {
+  const validate = (type, data) => {
     switch (type) {
       case "username":
       case "displayName":
@@ -45,7 +46,8 @@ class SignUp extends React.Component {
           throw new Error("Password and Confirm Password are required!");
         }
       case "email":
-        const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailPattern =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (emailPattern.test(data)) {
           return true;
         } else {
@@ -54,100 +56,113 @@ class SignUp extends React.Component {
       default:
         throw new Error("Unknow type validator!");
     }
-  }
+  };
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { signUpStart } = this.props;
-    const { email, password, confirm_password, displayName } = this.state;
+    const { email, password, confirm_password, displayName } = userDetails;
     try {
-      this.validate("username", displayName);
-      this.validate("email", email);
-      this.validate("password", [password, confirm_password]);
+      validate("username", displayName);
+      validate("email", email);
+      validate("password", [password, confirm_password]);
       signUpStart({ email, password, displayName });
-      this.setState({
+      setUserDetails({
         displayName: "",
         email: "",
         password: "",
         confirm_password: "",
       });
     } catch (e) {
-      alert(e);
+      setAlertDetails({
+        display: true,
+        title: "Attention!",
+        message: `${e}`,
+        variant: "danger",
+      });
     }
   };
 
-  render() {
-    return (
-      <Card>
-        <Card.Body>
-          <Card.Title>
-            <h2>Sign Up</h2>
-          </Card.Title>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="up-username">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter an username"
-                name="displayName"
-                onChange={this.handleChange}
-                value={this.state.displayName}
-                required
-              />
-            </Form.Group>
+  return (
+    <Card>
+      <Card.Body>
+        <Card.Title>
+          <h2>Sign Up</h2>
+        </Card.Title>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="up-username">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter an username"
+              name="displayName"
+              onChange={(e) =>
+                setUserDetails({ ...userDetails, displayName: e.target.value })
+              }
+              value={userDetails.displayName}
+              required
+            />
+          </Form.Group>
 
-            <Form.Group controlId="up-email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                name="email"
-                onChange={this.handleChange}
-                value={this.state.email}
-                required
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+          <Form.Group controlId="up-email">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              name="email"
+              onChange={(e) =>
+                setUserDetails({ ...userDetails, email: e.target.value })
+              }
+              value={userDetails.email}
+              required
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-            <Form.Group controlId="up-password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={this.handleChange}
-                value={this.state.password}
-                required
-              />
-            </Form.Group>
+          <Form.Group controlId="up-password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={(e) =>
+                setUserDetails({ ...userDetails, password: e.target.value })
+              }
+              value={userDetails.password}
+              required
+            />
+          </Form.Group>
 
-            <Form.Group controlId="up-confirm-password">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                name="confirm_password"
-                onChange={this.handleChange}
-                value={this.state.confirm_password}
-                required
-              />
-            </Form.Group>
+          <Form.Group controlId="up-confirm-password">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Confirm Password"
+              name="confirm_password"
+              onChange={(e) =>
+                setUserDetails({
+                  ...userDetails,
+                  confirm_password: e.target.value,
+                })
+              }
+              value={userDetails.confirm_password}
+              required
+            />
+          </Form.Group>
 
-            <Form.Group controlId="up-checkbox">
-              <Form.Check type="checkbox" label="I like this checkbox" />
-            </Form.Group>
+          <Form.Group controlId="up-checkbox">
+            <Form.Check type="checkbox" label="I like this checkbox" />
+          </Form.Group>
 
-            <Button variant="success" type="submit">
-              Sign Up
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    );
-  }
-}
+          <Button variant="success" type="submit">
+            Sign Up
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   signUpStart: (user) => dispatch(signUpStart(user)),

@@ -1,11 +1,4 @@
-import styled, { css } from "styled-components";
-
-const paddingRemove = (left, right) => {
-  return css`
-    padding-left: ${left};
-    padding-right: ${right};
-  `;
-};
+import styled from "styled-components";
 
 export const CheckoutContainer = styled.main`
   display: flex;
