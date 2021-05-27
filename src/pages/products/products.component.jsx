@@ -20,8 +20,8 @@ const Products = ({
 
       <Row xs={1} md={3}>
         {categoryProducts.map((item) => (
-          <Col as="section">
-            <Product key={item.id} item={item} />
+          <Col as="section" key={item.id}>
+            <Product item={item} />
           </Col>
         ))}
       </Row>

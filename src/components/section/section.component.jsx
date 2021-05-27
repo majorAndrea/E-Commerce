@@ -1,7 +1,6 @@
 import React from "react";
-import Col from "react-bootstrap/Col";
 import { withRouter } from "react-router-dom";
-import "./section.styles.css";
+import { CategorySection, CategoryName, Background } from "./section.styles";
 
 const Section = ({
   background,
@@ -11,20 +10,22 @@ const Section = ({
   url = "No URL",
 }) => {
   return (
-    <Col
-      className="element"
+    <CategorySection
       as="section"
+      className="element"
       xs
       onClick={() => history.push(`${match.url}${url}`)}
     >
-      <div
+      <Background
         aria-hidden
         className="background"
         style={{ backgroundImage: `url(${background})` }}
-      ></div>
+      ></Background>
 
-      <p className="category-name">{sectionName.toUpperCase()}</p>
-    </Col>
+      <CategoryName className="section-name">
+        {sectionName.toUpperCase()}
+      </CategoryName>
+    </CategorySection>
   );
 };
 

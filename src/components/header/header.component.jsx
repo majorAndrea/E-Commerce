@@ -8,16 +8,23 @@ import { auth } from "../../firebase";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
-import "./header.styles.css";
+import Button from "react-bootstrap/Button";
+import {
+  UserNavControls,
+  NavBarStyles,
+  UserDisplayName,
+  UserButtons,
+  LogoutButton,
+} from "./header.styles";
 
 const Header = ({ currentUser }) => {
   return (
-    <Navbar
+    <NavBarStyles
+      as={Navbar}
       collapseOnSelect
       expand="md"
       bg="dark"
       variant="dark"
-      className="navbar-margin-bottom"
     >
       <Container>
         <Navbar.Brand>eCommerce</Navbar.Brand>
@@ -38,17 +45,13 @@ const Header = ({ currentUser }) => {
             </Link>
           </Nav>
           <Nav className="ml-auto" as="section">
-            <div className="user-nav-controls">
+            <UserNavControls>
               {currentUser ? (
                 <Nav.Item>
                   <Navbar.Text>
-                    Welcome Back,
-                    <span
-                      className="user-display-name"
-                      onClick={() => auth.signOut()}
-                    >
+                    <UserDisplayName>
                       {currentUser.displayName.split(" ")[0]}
-                    </span>
+                    </UserDisplayName>
                   </Navbar.Text>
                 </Nav.Item>
               ) : (
@@ -58,14 +61,25 @@ const Header = ({ currentUser }) => {
                   </Link>
                 </Nav.Item>
               )}
-              <Nav.Item>
+
+              <UserButtons as={Nav.Item}>
+                <LogoutButton
+                  as={Button}
+                  type="button"
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => auth.signOut()}
+                  className="logout-btn"
+                >
+                  Logout
+                </LogoutButton>
                 <CartDropDownContainer />
-              </Nav.Item>
-            </div>
+              </UserButtons>
+            </UserNavControls>
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </NavBarStyles>
   );
 };
 
