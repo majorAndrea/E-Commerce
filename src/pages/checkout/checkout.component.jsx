@@ -15,6 +15,7 @@ import {
   CheckoutHeader,
   CheckoutFooter,
   CheckoutPayMethods,
+  CartTotal,
 } from "./checkout.styles";
 
 const Checkout = ({ cartProducts, cartTotal }) => {
@@ -22,11 +23,11 @@ const Checkout = ({ cartProducts, cartTotal }) => {
     <Container>
       <CheckoutContainer>
         <CheckoutHeader>
-          <Col>Preview</Col>
-          <Col>Name</Col>
-          <Col>Price</Col>
-          <Col>Quantity</Col>
-          <Col>Remove</Col>
+          <Col id="product-image">Preview</Col>
+          <Col id="product-name">Name</Col>
+          <Col id="product-price">Price</Col>
+          <Col id="product-quantity">Quantity</Col>
+          <Col id="remove-product">Remove</Col>
         </CheckoutHeader>
         {cartProducts.map((product) => (
           <CheckoutProductContainer key={product.id} product={product} />
@@ -35,8 +36,12 @@ const Checkout = ({ cartProducts, cartTotal }) => {
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
-          <Col>Total:</Col>
-          <Col className="cart-total">&euro; {cartTotal}</Col>
+          <Col as="span" id="total-price">
+            Total:
+          </Col>
+          <CartTotal as={"span"} aria-labelledby="total-price">
+            &euro; {cartTotal}
+          </CartTotal>
         </CheckoutFooter>
         <CheckoutPayMethods>
           <Col aria-hidden></Col>

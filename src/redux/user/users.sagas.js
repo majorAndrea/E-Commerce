@@ -11,6 +11,7 @@ import {
   signInFailure,
   signUpSuccess,
   signUpFailure,
+  logoutUser,
 } from "./user.actions.js";
 
 const signInUser = function* (user) {
@@ -67,6 +68,11 @@ const checkIsUserLoggedIn = function* () {
   }
 };
 
+const execLogoutUser = function* () {
+  yield auth.signOut();
+  yield put(logoutUser);
+};
+
 // SAGA INTERCEPTOR
 const onSignInWithGoogle = function* () {
   yield takeLatest(UserActionTypes.SIGN_IN_WITH_GOOGLE, signInWithGoogle);
@@ -88,6 +94,10 @@ const onIsUserLoggedIn = function* () {
   yield takeLatest(UserActionTypes.IS_USER_LOGGED_IN, checkIsUserLoggedIn);
 };
 
+const onLogoutUser = function* () {
+  yield takeLatest(UserActionTypes.LOGOUT_USER, execLogoutUser);
+};
+
 // USERS SAGAS ROOT
 export const userSagas = function* () {
   yield all([
@@ -96,5 +106,6 @@ export const userSagas = function* () {
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onIsUserLoggedIn),
+    call(onLogoutUser),
   ]);
 };

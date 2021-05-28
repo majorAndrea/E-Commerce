@@ -20,6 +20,12 @@ const userReducers = (state = INITIAL_STATE, action) => {
         currentUser: null,
         error: action.payload,
       };
+    case UsersActionTypes.LOGOUT_USER:
+      return {
+        ...state,
+        currentUser: null,
+        error: null,
+      };
     default:
       return state;
   }

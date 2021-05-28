@@ -41,3 +41,7 @@ export const signUpFailure = (error) => ({
 export const isUserLoggedIn = () => ({
   type: UserActionTypes.IS_USER_LOGGED_IN,
 });
+
+export const logoutUser = () => ({
+  type: UserActionTypes.LOGOUT_USER,
+});

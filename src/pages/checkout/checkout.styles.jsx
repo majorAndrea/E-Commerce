@@ -1,4 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const removePaddingX = css`
+  > :first-child {
+    padding-left: 0;
+  }
+
+  > :last-child {
+    padding-right: 0;
+  }
+`;
 
 export const CheckoutContainer = styled.main`
   display: flex;
@@ -15,13 +25,7 @@ export const CheckoutHeader = styled.section`
   color: black;
   text-align: center;
 
-  > .col:first-child {
-    padding-left: 0;
-  }
-
-  > .col:last-child {
-    padding-right: 0;
-  }
+  ${removePaddingX}
 `;
 
 export const CheckoutFooter = styled.section`
@@ -35,19 +39,20 @@ export const CheckoutFooter = styled.section`
   font-weight: lighter;
   text-align: center;
 
-  > .col:last-child {
-    padding-right: 0;
-  }
+  ${removePaddingX}
 
-  > .col:first-child {
+  > :nth-child(4) {
     padding-left: 0;
   }
+`;
 
-  > .cart-total {
-    font-weight: lighter;
-    margin: 0;
-    text-align: center;
-  }
+export const CartTotal = styled.span`
+  font-weight: lighter;
+  margin: 0;
+  text-align: center;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
 `;
 
 export const CheckoutPayMethods = styled.section`
@@ -57,11 +62,9 @@ export const CheckoutPayMethods = styled.section`
   text-align: center;
   display: flex;
 
-  > .col:last-child {
-    padding-right: 0;
-  }
+  ${removePaddingX}
 
-  > .col:first-child {
-    padding-left: 0;
+  > :nth-child(3) {
+    padding: 0;
   }
 `;

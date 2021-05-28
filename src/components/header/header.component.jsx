@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import CartDropDownContainer from "../cart-dropdown/cart-dropdown.container.jsx";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selectors.js";
-import { auth } from "../../firebase";
+import { logoutUser } from "../../redux/user/user.actions.js";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
@@ -17,7 +17,7 @@ import {
   LogoutButton,
 } from "./header.styles";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, logoutUser }) => {
   return (
     <NavBarStyles
       as={Navbar}
@@ -63,16 +63,19 @@ const Header = ({ currentUser }) => {
               )}
 
               <UserButtons as={Nav.Item}>
-                <LogoutButton
-                  as={Button}
-                  type="button"
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => auth.signOut()}
-                  className="logout-btn"
-                >
-                  Logout
-                </LogoutButton>
+                {currentUser ? (
+                  <LogoutButton
+                    as={Button}
+                    type="button"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => logoutUser()}
+                    className="logout-btn"
+                  >
+                    Logout
+                  </LogoutButton>
+                ) : null}
+
                 <CartDropDownContainer />
               </UserButtons>
             </UserNavControls>
@@ -87,4 +90,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => ({
+  logoutUser: () => dispatch(logoutUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

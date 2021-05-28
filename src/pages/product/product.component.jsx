@@ -1,52 +1,42 @@
 import React from "react";
 import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import Button from "react-bootstrap/Button";
-import "./product.styles.css";
+import { ProductImage } from "./product.styles";
 
 const Product = ({ product, addProductToCart }) => {
+  console.log(product.specs);
   return (
-    <Col
-      md={{ span: 8, offset: 2 }}
-      lg={{ span: 6, offset: 3 }}
-      as="article"
-      className="product"
-    >
-      <Card>
-        <Card.Img variant="top" src={product.background_image} />
-        <Card.Body>
-          <h3 className="product-name">{product.name}</h3>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>{product.description}</ListGroupItem>
-        </ListGroup>
-        <Card.Body>
-          <Card.Text>Available Colors:</Card.Text>
-          <ListGroup horizontal={"sm"}>
-            {product.colors.map((color) => (
-              <ListGroup.Item key={color} className="product-color">
-                {color}
-              </ListGroup.Item>
-            ))}
+    <Container>
+      <Row>
+        <Col md={6}>
+          <ProductImage
+            as={Image}
+            src={product.background_image}
+            alt={product.name}
+            thumbnail
+          ></ProductImage>
+        </Col>
+        <Col md={6}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <b>{product.name}</b>
+            </ListGroup.Item>
+            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
+            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
           </ListGroup>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>&euro; {product.price}</ListGroupItem>
-          <ListGroupItem>
-            <Button
-              variant="success"
-              onClick={() => {
-                addProductToCart(product);
-              }}
-            >
-              Add to Cart
-            </Button>
-          </ListGroupItem>
-        </ListGroup>
-      </Card>
-    </Col>
+        </Col>
+      </Row>
+      <Row>
+        <Col>{product.description}</Col>
+      </Row>
+    </Container>
   );
 };
 
