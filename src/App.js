@@ -8,7 +8,6 @@ import { isUserLoggedIn } from "./redux/user/user.actions.js";
 import CustomAlert from "./components/custom-alert/custom-alert.component.jsx";
 import { CustomAlertProvider } from "./providers/custom-alert/custom-alert.provider.jsx";
 import Footer from "./components/footer/footer.component.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const Main = React.lazy(() => import("./pages/main/main.component"));

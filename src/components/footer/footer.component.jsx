@@ -9,7 +9,7 @@ const Footer = () => {
     <StyledFooter>
       <Container>
         <Row>
-          <Col>Footer</Col>
+          <Col>Created by Andrea M.</Col>
         </Row>
       </Container>
     </StyledFooter>

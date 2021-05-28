@@ -2,12 +2,19 @@ import React from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
 import Button from "react-bootstrap/Button";
-import { ProductImage } from "./product.styles";
+import Form from "react-bootstrap/Form";
+import {
+  ProductImage,
+  ProductName,
+  ListProduct,
+  ColorSelectContainer,
+  ProductSpec,
+  ProductDescHeading,
+  ProductDesc,
+} from "./product.styles";
 
 const Product = ({ product, addProductToCart }) => {
   console.log(product.specs);
@@ -22,19 +29,54 @@ const Product = ({ product, addProductToCart }) => {
             thumbnail
           ></ProductImage>
         </Col>
-        <Col md={6}>
-          <ListGroup variant="flush">
+        <Col md={6} as="section" className="mt-4 mt-md-0">
+          <ListProduct as={ListGroup} variant="flush">
             <ListGroup.Item>
-              <b>{product.name}</b>
+              <ProductName>{product.name}</ProductName>
             </ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-          </ListGroup>
+            <ListGroup.Item>&euro; {product.price}</ListGroup.Item>
+            <ListGroup.Item>
+              <ColorSelectContainer>
+                <Form.Control size="sm" as="select">
+                  <option>Colors</option>
+                  {product.colors.map((color) => (
+                    <option key={color} className="product-color">
+                      {color}
+                    </option>
+                  ))}
+                </Form.Control>
+              </ColorSelectContainer>
+            </ListGroup.Item>
+            {product.specs ? (
+              <ListGroup.Item>
+                {Object.entries(product.specs).map((entry) => (
+                  <ProductSpec className="d-block" key={entry[0]}>
+                    {entry
+                      .join(": ")
+                      .replace(entry[0][0], entry[0][0].toUpperCase())}
+                  </ProductSpec>
+                ))}
+              </ListGroup.Item>
+            ) : null}
+            <ListGroup.Item>
+              <Button
+                variant="success"
+                type="button"
+                onClick={() => {
+                  addProductToCart(product);
+                }}
+              >
+                Add to Cart
+              </Button>
+            </ListGroup.Item>
+          </ListProduct>
         </Col>
       </Row>
       <Row>
-        <Col>{product.description}</Col>
+        <Col as="section" className="mt-4">
+          <ProductDescHeading>Description:</ProductDescHeading>
+          <ProductDesc>{product.description}</ProductDesc>
+        </Col>
       </Row>
     </Container>
   );
