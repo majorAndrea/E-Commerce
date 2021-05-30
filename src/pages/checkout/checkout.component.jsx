@@ -22,7 +22,7 @@ const Checkout = ({ cartProducts, cartTotal }) => {
   return (
     <Container>
       <CheckoutContainer>
-        <CheckoutHeader>
+        <CheckoutHeader className="d-none d-sm-flex">
           <Col id="product-image">Preview</Col>
           <Col id="product-name">Name</Col>
           <Col id="product-price">Price</Col>
@@ -36,17 +36,17 @@ const Checkout = ({ cartProducts, cartTotal }) => {
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
-          <Col as="span" id="total-price">
-            Total:
+          <Col aria-hidden>Total:</Col>
+          <Col>
+            <CartTotal as={"span"} aria-label="total price order">
+              &euro; {cartTotal}
+            </CartTotal>
           </Col>
-          <CartTotal as={"span"} aria-labelledby="total-price">
-            &euro; {cartTotal}
-          </CartTotal>
         </CheckoutFooter>
         <CheckoutPayMethods>
           <Col aria-hidden></Col>
           <Col aria-hidden></Col>
-          <Col aria-hidden>Pay Now:</Col>
+          <Col aria-hidden></Col>
           <Col>
             <PayPalOrder amount={cartTotal} />
           </Col>

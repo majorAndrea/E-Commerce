@@ -31,19 +31,13 @@ export const CheckoutHeader = styled.section`
 export const CheckoutFooter = styled.section`
   padding: 1rem 0;
   margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
   background-color: #f8f9fa;
   color: black;
-  font-size: x-large;
+  font-size: larger;
   font-weight: lighter;
-  text-align: center;
-
-  ${removePaddingX}
-
-  > :nth-child(4) {
-    padding-left: 0;
-  }
+  display: flex;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const CartTotal = styled.span`
@@ -57,7 +51,7 @@ export const CartTotal = styled.span`
 
 export const CheckoutPayMethods = styled.section`
   margin-top: 1rem;
-  font-size: x-large;
+  font-size: larger;
   font-weight: lighter;
   text-align: center;
   display: flex;

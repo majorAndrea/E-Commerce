@@ -35,12 +35,15 @@ export const ProductDetailsContainer = styled.div`
 `;
 
 export const QtyArrow = styled.span`
-  padding-left: 0;
+  padding: 0;
+  font-size: x-large;
 `;
 
 export const ProductImageContainer = styled.img`
   width: 100%;
   height: 100%;
+  padding: 0;
+  margin: 0;
 
   img {
     width: 100%;
@@ -60,6 +63,6 @@ export const RemoveProductContainer = styled.div`
     cursor: pointer;
     font-size: larger;
     align-self: center;
-    padding: 0.5rem;
+    padding: 0;
   }
 `;

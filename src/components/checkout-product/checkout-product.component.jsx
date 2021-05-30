@@ -6,7 +6,7 @@ import {
   ProductImageContainer,
   ProductQty,
   RemoveProductContainer,
-} from "./checkout.styles.jsx";
+} from "./checkout-product.styles.jsx";
 
 const CheckoutProduct = ({
   product,
@@ -16,7 +16,7 @@ const CheckoutProduct = ({
 }) => {
   const { background_image, name, price, qty } = product;
   return (
-    <ProductDetailsContainer>
+    <ProductDetailsContainer className="d-flex flex-column flex-sm-row">
       <ProductImageContainer as={Col}>
         <img
           src={background_image}
@@ -24,7 +24,9 @@ const CheckoutProduct = ({
           aria-labelledby="product-image"
         />
       </ProductImageContainer>
-      <Col aria-labelledby="product-name">{name}</Col>
+      <Col aria-labelledby="product-name" className="mt-2 mt-sm-0">
+        {name}
+      </Col>
       <Col aria-labelledby="product-price">&euro; {price}</Col>
       <Col>
         <QtyArrow
