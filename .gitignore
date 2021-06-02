@@ -1,6 +1,9 @@
 # node modules folder
 node_modules
 
+#other folders
+/src/utils
+
 # env variables
 .env
 
@@ -11,3 +14,9 @@ node_modules
 # ignore seed javascript file
 
 /src/seed.js
+
+# other javascript
+
+/src/reportWebVitals.js
+/src/setupTests.js
+/src/App.test.js
