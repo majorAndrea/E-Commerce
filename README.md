@@ -22,4 +22,4 @@ Tech used:
 SIDE-NOTE: There are some mixed technologies in this project because I have created this project while learning React, Redux, Firebase, etc... and I like to experiment
 while learning new things and I learn really well and fast when I do practice.
 
--> From time to time I update this project.
+-> From time to time I update this project. Live Version Soon.
