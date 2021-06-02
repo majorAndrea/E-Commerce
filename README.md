@@ -3,7 +3,7 @@ My first front-end project with React.
 
 Summary:
 
-In this e-commerce webApp users have two ways of doing the login, via Google or normal form registration. Then users can choose some articles, add them into the cart and then review the order in a checkout page and then completing the order via PayPal payment method. Once the payment is successfully completed, the user will be redirected to a checkout confirmation page with the order summary and some other informations.
+In this e-commerce webApp users have two ways of doing the login, via Google or normal form registration. Then users can choose some articles, add them to the cart and then review the order on a checkout page, and then completing the order via the PayPal payment method. Once the payment is successfully completed, the user will be redirected to a checkout confirmation page with the order summary and some other information. And the order details are stored on firestore db.
 
 Tech used:
 
@@ -19,7 +19,7 @@ Tech used:
 - Boostrap
 - Styled Components
 
-SIDE-NOTE: There are some mixed technologies in this project because I have created this project while learning React, Redux, Firebase, ecc... and I like to experiment
+SIDE-NOTE: There are some mixed technologies in this project because I have created this project while learning React, Redux, Firebase, etc... and I like to experiment
 while learning new things and I learn really well and fast when I do practice.
 
 -> From time to time I update this project.
