@@ -4,14 +4,19 @@ export const CardStyle = styled.section`
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  height: 420px;
 `;
 
 export const CardImgWrapper = styled.div`
   height: 200px;
-  img {
-    height: 100%;
-    object-fit: cover;
-  }
+  width: 100%;
+`;
+
+export const ProductImg = styled.img`
+  height: inherit;
+  width: inherit;
+  object-fit: ${(props) => props.objectfit};
+  background-color: #f8f9fa;
 `;
 
 export const CardDescWrapper = styled.div`

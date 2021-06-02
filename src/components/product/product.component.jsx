@@ -2,13 +2,23 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { CardStyle, CardImgWrapper, CardDescWrapper } from "./product.styles";
+import {
+  CardStyle,
+  CardImgWrapper,
+  CardDescWrapper,
+  ProductImg,
+} from "./product.styles";
 
-const Product = ({ item, history, match }) => {
+const Product = ({ item, history, match, superCategory }) => {
+  console.log(superCategory);
   return (
     <CardStyle as={Card}>
       <CardImgWrapper>
-        <Card.Img variant="top" src={item.background_image} />
+        <ProductImg
+          src={item.background_image}
+          alt=""
+          objectfit={superCategory === "fashion" ? "scale-down" : "cover"}
+        />
       </CardImgWrapper>
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>

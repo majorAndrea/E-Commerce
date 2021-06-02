@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -16,8 +17,7 @@ import {
   ProductDesc,
 } from "./product.styles";
 
-const Product = ({ product, addProductToCart }) => {
-  console.log(product.specs);
+const Product = ({ product, addProductToCart, match }) => {
   return (
     <Container>
       <Row>
@@ -27,6 +27,9 @@ const Product = ({ product, addProductToCart }) => {
             src={product.background_image}
             alt={product.name}
             thumbnail
+            objectfit={
+              match.params.superCategory === "fashion" ? "scale-down" : "cover"
+            }
           ></ProductImage>
         </Col>
         <Col md={6} as="section" className="mt-4 mt-md-0">
@@ -73,7 +76,7 @@ const Product = ({ product, addProductToCart }) => {
         </Col>
       </Row>
       <Row>
-        <Col as="section" className="mt-4">
+        <Col as="section" className="mt-4 mx-2 mx-sm-0">
           <ProductDescHeading>Description:</ProductDescHeading>
           <ProductDesc>{product.description}</ProductDesc>
         </Col>
@@ -82,4 +85,4 @@ const Product = ({ product, addProductToCart }) => {
   );
 };
 
-export default Product;
+export default withRouter(Product);

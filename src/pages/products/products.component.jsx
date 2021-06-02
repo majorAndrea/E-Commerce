@@ -8,7 +8,7 @@ import { getProductsOfCategorySelector } from "../../redux/products/products.sel
 
 const Products = ({
   match: {
-    params: { category },
+    params: { superCategory, category },
   },
   categoryProducts,
 }) => {
@@ -21,7 +21,7 @@ const Products = ({
       <Row xs={1} md={3}>
         {categoryProducts.map((item) => (
           <Col as="section" key={item.id}>
-            <Product item={item} />
+            <Product item={item} superCategory={superCategory} />
           </Col>
         ))}
       </Row>

@@ -41,13 +41,14 @@ export const QtyArrow = styled.span`
 
 export const ProductImageContainer = styled.img`
   width: 100%;
-  height: 100%;
+  height: 150px;
   padding: 0;
   margin: 0;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
   }
 `;
 
