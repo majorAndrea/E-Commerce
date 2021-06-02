@@ -16,7 +16,7 @@ Tech used:
 - Boostrap
 - Styled Components
 
-There are some mixed technologies in this project because I have created this project while learning React, Firebase, etc. And I like to experiment
-when I learn new things because I am learn really well and fast when I practice.
+There are some mixed technologies in this project because I have created this project while learning React, Redux, Firebase, ecc... and I like to experiment
+while learning new things.
 
 -> From time to time I update this project.
