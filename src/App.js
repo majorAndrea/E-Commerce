@@ -7,6 +7,7 @@ import { selectCurrentUser } from "./redux/user/user.selectors.js";
 import { isUserLoggedIn } from "./redux/user/user.actions.js";
 import CustomAlert from "./components/custom-alert/custom-alert.component.jsx";
 import { CustomAlertProvider } from "./providers/custom-alert/custom-alert.provider.jsx";
+import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 import Footer from "./components/footer/footer.component.jsx";
 import "./App.css";
 
@@ -32,35 +33,41 @@ const App = ({ currentUser, isUserLoggedIn }) => {
   return (
     <div className="wrapper">
       <Header />
-      <CustomAlertProvider>
-        <CustomAlert />
-        <React.Suspense fallback={<div>Loading...</div>}>
+      <ErrorBoundary>
+        <CustomAlertProvider>
+          <CustomAlert />
           <Switch>
-            <Route exact path="/" component={Main} />
-            <Route
-              exact
-              path="/signin"
-              render={() => (currentUser ? <Redirect to="/" /> : <SignInUp />)}
-            />
-            <Route exact path="/checkout" component={Checkout} />
-            <Route
-              exact
-              path="/checkout/:orderId/"
-              component={CheckoutConfirm}
-            />
-            <Route
-              exact
-              path="/:superCategory/:category"
-              component={Products}
-            />
-            <Route
-              exact
-              path="/:superCategory/:category/:productId"
-              component={Product}
-            />
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <Route exact path="/" component={Main} />
+              <Route
+                exact
+                path="/signin"
+                render={() =>
+                  currentUser ? <Redirect to="/" /> : <SignInUp />
+                }
+              />
+
+              <Route exact path="/checkout" component={Checkout} />
+
+              <Route
+                exact
+                path="/checkout/:orderId/"
+                component={CheckoutConfirm}
+              />
+              <Route
+                exact
+                path="/:superCategory/:category"
+                component={Products}
+              />
+              <Route
+                exact
+                path="/:superCategory/:category/:productId"
+                component={Product}
+              />
+            </React.Suspense>
           </Switch>
-        </React.Suspense>
-      </CustomAlertProvider>
+        </CustomAlertProvider>
+      </ErrorBoundary>
       <Footer />
     </div>
   );

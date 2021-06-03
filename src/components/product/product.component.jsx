@@ -10,7 +10,6 @@ import {
 } from "./product.styles";
 
 const Product = ({ item, history, match, superCategory }) => {
-  console.log(superCategory);
   return (
     <CardStyle as={Card}>
       <CardImgWrapper>
