@@ -24,8 +24,6 @@ export const CheckoutHeader = styled.section`
   background-color: #f8f9fa;
   color: black;
   text-align: center;
-
-  ${removePaddingX}
 `;
 
 export const CheckoutFooter = styled.section`
@@ -56,9 +54,8 @@ export const CheckoutPayMethods = styled.section`
   text-align: center;
   display: flex;
 
-  ${removePaddingX}
-
-  > :nth-child(3) {
-    padding: 0;
+  div:last-of-type {
+    padding-right: 0;
+    margin-right: 0;
   }
 `;

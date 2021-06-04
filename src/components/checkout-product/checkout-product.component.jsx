@@ -16,7 +16,7 @@ const CheckoutProduct = ({
 }) => {
   const { background_image, name, price, qty } = product;
   return (
-    <ProductDetailsContainer className="d-flex flex-column flex-sm-row">
+    <ProductDetailsContainer className="d-flex flex-column flex-md-row">
       <ProductImageContainer as={Col}>
         <img
           src={background_image}
@@ -24,11 +24,13 @@ const CheckoutProduct = ({
           aria-labelledby="product-image"
         />
       </ProductImageContainer>
-      <Col aria-labelledby="product-name" className="mt-2 mt-sm-0">
+      <Col aria-labelledby="product-name" className="mt-2 mt-md-0">
         {name}
       </Col>
-      <Col aria-labelledby="product-price">&euro; {price}</Col>
-      <Col>
+      <Col aria-labelledby="product-price" className="mt-2 mt-md-0">
+        &euro; {price}
+      </Col>
+      <Col className="mt-2 mt-md-0">
         <QtyArrow
           role="button"
           aria-labelledby="product-quantity"
@@ -71,6 +73,7 @@ const CheckoutProduct = ({
       <RemoveProductContainer as={Col} className="checkout-remove-product">
         <span
           role="button"
+          className="ml-auto ml-md-0 p-3 p-md-0"
           aria-labelledby="remove-product"
           aria-label="Remove this article from the cart"
           tabIndex="0"

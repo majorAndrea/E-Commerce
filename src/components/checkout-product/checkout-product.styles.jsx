@@ -24,14 +24,6 @@ export const ProductDetailsContainer = styled.div`
   > :nth-child(3) {
     ${fontLargerAndLighter};
   }
-
-  > :first-child {
-    padding-left: 0;
-  }
-
-  > :last-child {
-    padding-right: 0;
-  }
 `;
 
 export const QtyArrow = styled.span`
@@ -42,13 +34,11 @@ export const QtyArrow = styled.span`
 export const ProductImageContainer = styled.img`
   width: 100%;
   height: 150px;
-  padding: 0;
-  margin: 0;
 
   img {
     width: inherit;
     height: inherit;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 

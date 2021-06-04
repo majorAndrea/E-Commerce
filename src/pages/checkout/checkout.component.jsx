@@ -22,7 +22,7 @@ const Checkout = ({ cartProducts, cartTotal }) => {
   return (
     <Container>
       <CheckoutContainer>
-        <CheckoutHeader className="d-none d-sm-flex">
+        <CheckoutHeader className="d-none d-md-flex">
           <Col id="product-image">Preview</Col>
           <Col id="product-name">Name</Col>
           <Col id="product-price">Price</Col>

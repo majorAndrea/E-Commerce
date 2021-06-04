@@ -29,3 +29,17 @@ export const CartTotal = styled.span`
   display: block;
   background-color: #f8f9fa;
 `;
+
+export const CheckoutButtonStyle = styled.div`
+  background-color: #343a40;
+  border-color: #343a40;
+  border-radius: 0.2rem;
+
+  .checkout-dropdown-btn {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .checkout-dropdown-btn:after {
+    content: none;
+  }
+`;

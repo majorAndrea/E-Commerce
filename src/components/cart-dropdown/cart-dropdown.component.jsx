@@ -10,6 +10,7 @@ import {
   ProductsCartWrapper,
   CartEmpty,
   CartTotal,
+  CheckoutButtonStyle,
 } from "./cart-dropdown-styles.jsx";
 
 const CartDropDown = ({ cartProducts, cartTotal, cartQty, history }) => {
@@ -39,15 +40,19 @@ const CartDropDown = ({ cartProducts, cartTotal, cartQty, history }) => {
           <CartTotal>Total: &euro; {cartTotal}</CartTotal>
         ) : null}
         {cartProductsLength ? (
-          <Button
-            block
-            variant="dark"
-            onClick={() => {
-              history.push("/checkout");
-            }}
-          >
-            Checkout
-          </Button>
+          <CheckoutButtonStyle>
+            <Dropdown.Toggle
+              as={Button}
+              block
+              variant="dark"
+              size="sm"
+              id="cart-dropdown-button"
+              onClickCapture={() => history.push("/checkout")}
+              className="checkout-dropdown-btn"
+            >
+              Checkout
+            </Dropdown.Toggle>
+          </CheckoutButtonStyle>
         ) : (
           <Button block variant="dark" disabled>
             Checkout
