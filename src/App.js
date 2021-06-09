@@ -9,6 +9,7 @@ import CustomAlert from "./components/custom-alert/custom-alert.component.jsx";
 import { CustomAlertProvider } from "./providers/custom-alert/custom-alert.provider.jsx";
 import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 import Footer from "./components/footer/footer.component.jsx";
+import "./assets/styles/starability-basic-min.css";
 import "./App.css";
 
 const Main = React.lazy(() => import("./pages/main/main.component"));

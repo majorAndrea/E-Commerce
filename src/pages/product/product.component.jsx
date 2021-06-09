@@ -16,6 +16,7 @@ import {
   ProductDescHeading,
   ProductDesc,
 } from "./product.styles";
+import ProductReview from "../../components/product-review/product-review.component";
 
 const Product = ({ product, addProductToCart, match }) => {
   return (
@@ -36,6 +37,12 @@ const Product = ({ product, addProductToCart, match }) => {
           <ListProduct as={ListGroup} variant="flush">
             <ListGroup.Item>
               <ProductName>{product.name}</ProductName>
+              <p
+                className="starability-result m-0 p-0 mt-1 fs-6"
+                data-rating="3"
+              >
+                Rated: 3 stars
+              </p>
             </ListGroup.Item>
             <ListGroup.Item>&euro; {product.price}</ListGroup.Item>
             <ListGroup.Item>
@@ -79,6 +86,11 @@ const Product = ({ product, addProductToCart, match }) => {
         <Col as="section" className="mt-4 mx-2 mx-sm-0">
           <ProductDescHeading>Description:</ProductDescHeading>
           <ProductDesc>{product.description}</ProductDesc>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col>
+          <ProductReview />
         </Col>
       </Row>
     </Container>
