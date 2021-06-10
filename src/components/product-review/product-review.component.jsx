@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import ProductReviewForm from "../product-review-form/product-review-form.component";
 import ProductReviewReviews from "../product-review-reviews/product-review-reviews.component";
+import { fetchReviewsFromDb } from "../../redux/reviews/reviews.actions";
+import {
+  isFetchingReviewsSelector,
+  usersReviewsSelector,
+} from "../../redux/reviews/reviews.selectors";
 
-const ProductReview = () => {
+// TODO: After completing all the functionality move this
+// effect etc. to the product-review-reviews component.
+const ProductReview = ({ fetchReviewsFromDb, isFetchingReviews, reviews }) => {
+  const { superCategory, category, productId } = useParams();
+
+  useEffect(() => {
+    fetchReviewsFromDb({
+      params: {
+        superCategory,
+        category,
+        productId,
+      },
+    });
+  }, [fetchReviewsFromDb, superCategory, category, productId]);
+
   return (
     <Row>
       <Col xs={12} md={6} as="section">
-        <ProductReviewReviews />
+        <ProductReviewReviews
+          isLoading={isFetchingReviews}
+          spinnerVHPosition="30vh"
+          reviews={reviews}
+        />
       </Col>
       <Col xs={12} md={6} as="section">
         <ProductReviewForm />
@@ -18,4 +43,13 @@ const ProductReview = () => {
   );
 };
 
-export default ProductReview;
+const mapDispatchToProps = (dispatch) => ({
+  fetchReviewsFromDb: (params) => dispatch(fetchReviewsFromDb(params)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  isFetchingReviews: isFetchingReviewsSelector,
+  reviews: usersReviewsSelector,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductReview);

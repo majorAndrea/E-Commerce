@@ -1,32 +1,45 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {
   ProductReviewFormHeading,
   SubmitReviewBtnContainer,
 } from "./product-review-form.styles";
+import { addReviewToDb } from "../../redux/reviews/reviews.actions";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../redux/user/user.selectors.js";
 
-const ProductReviewForm = () => {
+const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
+  const { superCategory, category, productId } = useParams();
+
   const [reviewDetails, setReviewDetails] = useState({
-    rating: 0,
+    rating: 1,
     text: "",
+    productDetails: {
+      superCategory,
+      category,
+      productId,
+    },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(reviewDetails);
+    reviewDetails.reviewerDetails = {
+      id: currentUser.id,
+      name: currentUser.displayName,
+    };
+    reviewDetails.createdAt = new Date();
+    addReviewToDb(reviewDetails);
   };
 
   return (
     <>
       <ProductReviewFormHeading>Leave a Review</ProductReviewFormHeading>
       <Form onSubmit={handleSubmit}>
-        <Form.Group
-          controlId="ratingStartControl"
-          className="mb-2 p-0"
-          style={{ height: "31px" }}
-        >
-          <fieldset className="starability-basic">
+        <Form.Group controlId="ratingStartControl" className="mb-2 p-0">
+          <fieldset className="starability-basic position-relative">
             <input
               type="radio"
               id="second-rate1"
@@ -97,6 +110,7 @@ const ProductReviewForm = () => {
             as="textarea"
             rows={5}
             placeholder="Write here your review."
+            value={reviewDetails.text}
             onChange={(e) =>
               setReviewDetails({ ...reviewDetails, text: e.target.value })
             }
@@ -112,4 +126,14 @@ const ProductReviewForm = () => {
   );
 };
 
-export default ProductReviewForm;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addReviewToDb: (reviewDetails) => dispatch(addReviewToDb(reviewDetails)),
+});
+
+export default React.memo(
+  connect(mapStateToProps, mapDispatchToProps)(ProductReviewForm)
+);

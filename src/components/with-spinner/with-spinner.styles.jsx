@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SpinnerOverlay = styled.div`
-  height: 35vh;
+  height: ${(props) => props.displayPosition};
   width: 100%;
   display: flex;
   justify-content: center;

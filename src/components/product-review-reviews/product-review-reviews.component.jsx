@@ -1,19 +1,22 @@
 import React from "react";
+import WithSpinner from "../with-spinner/with-spinner.component";
 import ListGroup from "react-bootstrap/ListGroup";
 import { ProductReviewReviewsHeading } from "./product-review-reviews.styles";
+import UserProductReview from "../product-user-review/product-user-review.component";
 
-const ProductReviewReviews = () => {
+const ProductReviewReviews = ({ reviews }) => {
+  console.log(reviews);
   return (
     <>
       <ProductReviewReviewsHeading>Reviews</ProductReviewReviewsHeading>
+
       <ListGroup variant="flush">
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-        <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-        <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+        {reviews.map((review) => (
+          <UserProductReview key={review.createdAt.seconds} details={review} />
+        ))}
       </ListGroup>
     </>
   );
 };
 
-export default ProductReviewReviews;
+export default WithSpinner(ProductReviewReviews);

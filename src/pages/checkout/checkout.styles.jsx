@@ -1,14 +1,4 @@
-import styled, { css } from "styled-components";
-
-const removePaddingX = css`
-  > :first-child {
-    padding-left: 0;
-  }
-
-  > :last-child {
-    padding-right: 0;
-  }
-`;
+import styled from "styled-components";
 
 export const CheckoutContainer = styled.main`
   display: flex;
