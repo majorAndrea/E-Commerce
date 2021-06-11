@@ -5,7 +5,6 @@ import { ProductReviewReviewsHeading } from "./product-review-reviews.styles";
 import UserProductReview from "../product-user-review/product-user-review.component";
 
 const ProductReviewReviews = ({ reviews }) => {
-  console.log(reviews);
   return (
     <>
       <ProductReviewReviewsHeading>Reviews</ProductReviewReviewsHeading>

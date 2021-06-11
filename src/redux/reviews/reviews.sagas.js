@@ -10,8 +10,28 @@ import {
 
 const addReviewToFirebase = function* ({ payload }) {
   try {
-    const { type, ...otherData } = yield payload;
-    yield firestore.collection("reviews").add({ ...otherData });
+    const { type, productDetails, ...otherData } = yield payload;
+    yield firestore.collection("reviews").add({ productDetails, ...otherData });
+    const productSnap = yield firestore
+      .collection("products")
+      .where("superCategory", "==", productDetails.superCategory)
+      .where("categoryName", "==", productDetails.category)
+      .get();
+    const productList = yield [];
+    yield productSnap.forEach((doc) => {
+      doc.update();
+      productList.push(doc.data());
+    });
+    const updatedDoc = yield productList[0].items.map((product) => {
+      if (product.id === parseInt(productDetails.productId)) {
+        if (product.reviewsTotal) {
+          product.reviewsTotal += 1;
+        } else {
+          product.reviewsTotal = 1;
+        }
+      }
+      return product;
+    });
     yield put(addReviewToDbSuccess());
   } catch (error) {
     yield put(addReviewToDbFailure(error));

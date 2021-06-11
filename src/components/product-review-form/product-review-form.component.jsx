@@ -38,7 +38,11 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
     <>
       <ProductReviewFormHeading>Leave a Review</ProductReviewFormHeading>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="ratingStartControl" className="mb-2 p-0">
+        <Form.Group
+          controlId="ratingStartControl"
+          className="mb-2 p-0"
+          style={{ height: "2.4em" }}
+        >
           <fieldset className="starability-basic position-relative">
             <input
               type="radio"
