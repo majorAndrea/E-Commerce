@@ -15,5 +15,6 @@ export const ReviewTextareaNoCurrentUserStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15vh;
+  height: 100%;
+  min-height: 12vh;
 `;

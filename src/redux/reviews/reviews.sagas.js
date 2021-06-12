@@ -8,36 +8,6 @@ import {
   fetchReviewsFailure,
 } from "./reviews.actions";
 
-const addReviewToFirebase = function* ({ payload }) {
-  try {
-    const { type, productDetails, ...otherData } = yield payload;
-    yield firestore.collection("reviews").add({ productDetails, ...otherData });
-    // const productSnap = yield firestore
-    //   .collection("products")
-    //   .where("superCategory", "==", productDetails.superCategory)
-    //   .where("categoryName", "==", productDetails.category)
-    //   .get();
-    // const productList = yield [];
-    // yield productSnap.forEach((doc) => {
-    //   doc.update();
-    //   productList.push(doc.data());
-    // });
-    // const updatedDoc = yield productList[0].items.map((product) => {
-    //   if (product.id === parseInt(productDetails.productId)) {
-    //     if (product.reviewsTotal) {
-    //       product.reviewsTotal += 1;
-    //     } else {
-    //       product.reviewsTotal = 1;
-    //     }
-    //   }
-    //   return product;
-    // });
-    yield put(addReviewToDbSuccess());
-  } catch (error) {
-    yield put(addReviewToDbFailure(error));
-  }
-};
-
 const fetchReviewsFromFirebase = function* ({
   payload: {
     params: { superCategory, category, productId },
@@ -49,7 +19,8 @@ const fetchReviewsFromFirebase = function* ({
       .collection("reviews")
       .where("productDetails.superCategory", "==", superCategory)
       .where("productDetails.category", "==", category)
-      .where("productDetails.productId", "==", productId);
+      .where("productDetails.productId", "==", productId)
+      .orderBy("createdAt", "desc");
     const querySnapshot = yield reviewsRef.get();
     yield querySnapshot.forEach((doc) => {
       reviewsBuffer.push(doc.data());
@@ -57,6 +28,19 @@ const fetchReviewsFromFirebase = function* ({
     yield put(fetchReviewsSuccess(reviewsBuffer));
   } catch (error) {
     yield put(fetchReviewsFailure(error));
+  }
+};
+
+const addReviewToFirebase = function* ({ payload }) {
+  try {
+    const { type, productDetails, ...otherData } = yield payload;
+    yield firestore.collection("reviews").add({ productDetails, ...otherData });
+    yield put(addReviewToDbSuccess());
+    // Structure the payload to be destructured fine in fetchReviewsFromFirebase
+    payload = yield { payload: { params: { ...productDetails } } };
+    yield fetchReviewsFromFirebase(payload);
+  } catch (error) {
+    yield put(addReviewToDbFailure(error));
   }
 };
 

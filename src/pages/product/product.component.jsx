@@ -84,7 +84,7 @@ const Product = ({ product, addProductToCart, match }) => {
           <ProductDesc>{product.description}</ProductDesc>
         </Col>
       </Row>
-      <Row className="mt-4">
+      <Row className="mt-3">
         <Col>
           <ProductReview />
         </Col>

@@ -1,7 +1,10 @@
 import React from "react";
 import WithSpinner from "../../with-spinner/with-spinner.component";
 import ListGroup from "react-bootstrap/ListGroup";
-import { ProductReviewReviewsHeading } from "./product-review-reviews.styles";
+import {
+  ProductReviewReviewsHeading,
+  ReviewsContainer,
+} from "./product-review-reviews.styles";
 import UserProductReview from "../product-user-review/product-user-review.component";
 
 const ProductReviewReviews = ({ reviews }) => {
@@ -9,7 +12,7 @@ const ProductReviewReviews = ({ reviews }) => {
     <>
       <ProductReviewReviewsHeading>Reviews</ProductReviewReviewsHeading>
 
-      <ListGroup variant="flush">
+      <ReviewsContainer as={ListGroup} variant="flush" className="card rounded">
         {reviews.length ? (
           reviews.map((review) => (
             <UserProductReview
@@ -18,11 +21,11 @@ const ProductReviewReviews = ({ reviews }) => {
             />
           ))
         ) : (
-          <span className="text-muted mt-3 mb-3 card p-3">
+          <span className="text-muted mt-3 mb-3 p-3">
             This article does not have any reviews.
           </span>
         )}
-      </ListGroup>
+      </ReviewsContainer>
     </>
   );
 };

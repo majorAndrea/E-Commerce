@@ -18,7 +18,7 @@ const UserProductReview = ({ details }) => {
   };
 
   return (
-    <ListGroup.Item className="pl-0">
+    <ListGroup.Item className="pl-3">
       <div className="position-relative mb-2">
         <ReviewsUsernameStyle>
           {reviewerDetails.name} says:
@@ -27,7 +27,7 @@ const UserProductReview = ({ details }) => {
         <ReviewsTextStyle>{normalizeDate()}</ReviewsTextStyle>
 
         <RatingStarsStyle
-          className="starability-result m-0 p-0 ml-3 fs-6 text-start"
+          className="starability-result"
           data-rating={String(rating)}
         >
           Rated: {String(rating)} stars

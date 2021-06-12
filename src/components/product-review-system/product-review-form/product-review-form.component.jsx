@@ -27,12 +27,24 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
+
     reviewDetails.reviewerDetails = {
       id: currentUser.id,
       name: currentUser.displayName,
     };
     reviewDetails.createdAt = new Date();
     addReviewToDb(reviewDetails);
+
+    setReviewDetails({
+      rating: reviewDetails.rating,
+      text: "",
+      productDetails: {
+        superCategory,
+        category,
+        productId,
+      },
+    });
   };
 
   return currentUser ? (
@@ -112,10 +124,13 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
         <Form.Group controlId="textAreaFormControl">
           <Form.Label hidden>Write your review here:</Form.Label>
           <Form.Control
+            required
             as="textarea"
             rows={5}
             placeholder="Write here your review."
             value={reviewDetails.text}
+            maxLength="120"
+            minLength="10"
             onChange={(e) =>
               setReviewDetails({ ...reviewDetails, text: e.target.value })
             }

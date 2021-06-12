@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const RatingStarsStyle = styled.p`
   position: absolute;
   transform: scale(0.6);
-  right: 0;
+  right: -2.1rem;
   top: 0;
 `;
 

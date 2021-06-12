@@ -36,7 +36,7 @@ const ProductReview = ({ fetchReviewsFromDb, isFetchingReviews, reviews }) => {
           reviews={reviews}
         />
       </Col>
-      <Col xs={12} md={6} as="section">
+      <Col xs={12} md={6} as="section" className="pt-4 pt-md-0">
         <ProductReviewForm />
       </Col>
     </Row>
