@@ -3,7 +3,7 @@ My first front-end project with React.
 
 Summary:
 
-In this e-commerce webApp users have two ways of doing the login, via Google or normal form registration. Then users can choose some articles, add them to the cart and then review the order on a checkout page, and then completing the order via the PayPal payment method. Once the payment is successfully completed, the user will be redirected to a checkout confirmation page with the order summary and some other information. And the order details are stored on firestore db.
+In this e-commerce WebApp users have two ways of doing the login, via Google or normal form registration. Then users can choose some product and also review them with a five stars system, add them to the cart and then review the order on a checkout page, and then completing the order via the PayPal payment method. Once the payment is successfully completed, the user will be redirected to a checkout confirmation page with the order summary and some other information. And the order details are stored on firestore db.
 
 Tech used:
 
