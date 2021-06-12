@@ -16,7 +16,8 @@ import {
   ProductDescHeading,
   ProductDesc,
 } from "./product.styles";
-import ProductReview from "../../components/product-review/product-review.component";
+import ProductReview from "../../components/product-review-system/product-review/product-review.component";
+import ProductStars from "../../components/product-review-system/product-stars/product-stars.component";
 
 const Product = ({ product, addProductToCart, match }) => {
   return (
@@ -37,12 +38,7 @@ const Product = ({ product, addProductToCart, match }) => {
           <ListProduct as={ListGroup} variant="flush">
             <ListGroup.Item>
               <ProductName>{product.name}</ProductName>
-              <p
-                className="starability-result m-0 p-0 mt-1 fs-6"
-                data-rating="3"
-              >
-                Rated: 3 stars
-              </p>
+              <ProductStars />
             </ListGroup.Item>
             <ListGroup.Item>&euro; {product.price}</ListGroup.Item>
             <ListGroup.Item>
@@ -83,7 +79,7 @@ const Product = ({ product, addProductToCart, match }) => {
         </Col>
       </Row>
       <Row>
-        <Col as="section" className="mt-4 mx-2 mx-sm-0">
+        <Col as="section" className="mt-4">
           <ProductDescHeading>Description:</ProductDescHeading>
           <ProductDesc>{product.description}</ProductDesc>
         </Col>

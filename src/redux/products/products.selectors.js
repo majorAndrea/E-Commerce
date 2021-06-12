@@ -41,9 +41,11 @@ export const getProductsOfCategorySelector = memoize(
     createSelector(
       [categoriesFilterBySuperCategorySelector(superCategory)],
       (data) =>
-        data.filter(
-          (el) => el.categoryName.toLowerCase() === category.toLowerCase()
-        )[0].items
+        data
+          ? data.filter(
+              (el) => el.categoryName.toLowerCase() === category.toLowerCase()
+            )[0]?.items || []
+          : []
     ),
   (...args) => values(args).join("_")
 );

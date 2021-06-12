@@ -45,3 +45,7 @@ export const isUserLoggedIn = () => ({
 export const logoutUser = () => ({
   type: UserActionTypes.LOGOUT_USER,
 });
+
+export const logoutUserSuccess = () => ({
+  type: UserActionTypes.LOGOUT_USER_SUCCESS,
+});

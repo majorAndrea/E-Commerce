@@ -39,6 +39,7 @@ export const ProductImageContainer = styled.img`
     width: inherit;
     height: inherit;
     object-fit: contain;
+    object-position: 50% 50%;
   }
 `;
 

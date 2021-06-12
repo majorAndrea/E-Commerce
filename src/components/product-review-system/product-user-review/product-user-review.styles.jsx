@@ -12,7 +12,8 @@ export const ReviewsUsernameStyle = styled.span`
   font-weight: lighter;
 `;
 
-export const ReviewsTextStyle = styled.p`
+export const ReviewsTextStyle = styled.span`
+  display: block;
   font-size: small;
   font-weight: lighter;
 `;

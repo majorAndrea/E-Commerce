@@ -4,16 +4,15 @@ import SignUp from "../../components/sign-up/sign-up.component";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import "./sign-in-up.styles.css";
 
 const SignInUp = () => {
   return (
-    <Container as="article">
-      <Row className="margin-up">
+    <Container as="article" className="mt-2">
+      <Row>
         <Col xs={12} md={6}>
           <SignIn />
         </Col>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={6} className="mt-4 mt-md-0 mb-4 mb-md-0">
           <SignUp />
         </Col>
       </Row>

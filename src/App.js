@@ -37,8 +37,9 @@ const App = ({ currentUser, isUserLoggedIn }) => {
       <ErrorBoundary>
         <CustomAlertProvider>
           <CustomAlert />
-          <Switch>
-            <React.Suspense fallback={<div>Loading...</div>}>
+
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Switch>
               <Route exact path="/" component={Main} />
               <Route
                 exact
@@ -52,21 +53,23 @@ const App = ({ currentUser, isUserLoggedIn }) => {
 
               <Route
                 exact
-                path="/checkout/:orderId/"
+                path="/checkout/:orderId"
                 component={CheckoutConfirm}
               />
+
               <Route
                 exact
                 path="/:superCategory/:category"
                 component={Products}
               />
+
               <Route
                 exact
                 path="/:superCategory/:category/:productId"
                 component={Product}
               />
-            </React.Suspense>
-          </Switch>
+            </Switch>
+          </React.Suspense>
         </CustomAlertProvider>
       </ErrorBoundary>
       <Footer />

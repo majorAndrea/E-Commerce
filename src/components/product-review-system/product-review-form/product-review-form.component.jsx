@@ -6,16 +6,17 @@ import Button from "react-bootstrap/Button";
 import {
   ProductReviewFormHeading,
   SubmitReviewBtnContainer,
+  ReviewTextareaNoCurrentUserStyle,
 } from "./product-review-form.styles";
-import { addReviewToDb } from "../../redux/reviews/reviews.actions";
+import { addReviewToDb } from "../../../redux/reviews/reviews.actions";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "../../redux/user/user.selectors.js";
+import { selectCurrentUser } from "../../../redux/user/user.selectors.js";
 
 const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
   const { superCategory, category, productId } = useParams();
 
   const [reviewDetails, setReviewDetails] = useState({
-    rating: 1,
+    rating: 5,
     text: "",
     productDetails: {
       superCategory,
@@ -34,7 +35,7 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
     addReviewToDb(reviewDetails);
   };
 
-  return (
+  return currentUser ? (
     <>
       <ProductReviewFormHeading>Leave a Review</ProductReviewFormHeading>
       <Form onSubmit={handleSubmit}>
@@ -127,6 +128,10 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
         </SubmitReviewBtnContainer>
       </Form>
     </>
+  ) : (
+    <ReviewTextareaNoCurrentUserStyle className="card text-muted">
+      <span> To leave a review please log in.</span>
+    </ReviewTextareaNoCurrentUserStyle>
   );
 };
 

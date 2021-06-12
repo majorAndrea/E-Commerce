@@ -9,6 +9,7 @@ const UsersActionTypes = {
   SIGN_UP_FAILURE: "SIGN_UP_FAILURE,",
   IS_USER_LOGGED_IN: "IS_USER_LOGGED_IN",
   LOGOUT_USER: "LOGOUT_USER",
+  LOGOUT_USER_SUCCESS: "LOGOUT_USER_SUCCESS",
 };
 
 export default UsersActionTypes;

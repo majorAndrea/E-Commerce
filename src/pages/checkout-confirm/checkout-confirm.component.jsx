@@ -11,7 +11,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 
 const CheckoutConfirm = ({ checkoutSuccess, currentUser }) => {
-  console.log(checkoutSuccess.products_bought);
   return (
     <Container as="article">
       <Row>
@@ -38,9 +37,8 @@ const CheckoutConfirm = ({ checkoutSuccess, currentUser }) => {
               <h2>Your order:</h2>
             </ListGroup.Item>
             {checkoutSuccess.products_bought.map((product) => (
-              <ListGroup.Item>
+              <ListGroup.Item key={product.id}>
                 <CartItem
-                  key={product.id}
                   productName={product.name}
                   qty={product.qty}
                   price={product.price}

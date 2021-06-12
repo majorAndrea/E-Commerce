@@ -11,7 +11,8 @@ export const selectCartTotal = createSelector(
   [selectCartProducts],
   (cartProducts) =>
     cartProducts.reduce(
-      (total, product) => (total += product.price * product.qty),
+      (total, product) =>
+        Number.parseFloat((total += product.price * product.qty)).toFixed(2),
       0
     )
 );

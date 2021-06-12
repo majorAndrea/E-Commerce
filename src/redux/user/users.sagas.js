@@ -11,8 +11,9 @@ import {
   signInFailure,
   signUpSuccess,
   signUpFailure,
-  logoutUser,
+  logoutUserSuccess,
 } from "./user.actions.js";
+import { emptyCart } from "../cart/cart.actions";
 
 const signInUser = function* (user) {
   const userRef = yield call(createUserDocument, { user });
@@ -70,7 +71,8 @@ const checkIsUserLoggedIn = function* () {
 
 const execLogoutUser = function* () {
   yield auth.signOut();
-  yield put(logoutUser);
+  yield put(logoutUserSuccess());
+  yield put(emptyCart());
 };
 
 // SAGA INTERCEPTOR

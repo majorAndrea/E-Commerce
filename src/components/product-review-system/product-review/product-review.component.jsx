@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ProductReviewForm from "../product-review-form/product-review-form.component";
-import ProductReviewReviews from "../product-review-reviews/product-review-reviews.component";
-import { fetchReviewsFromDb } from "../../redux/reviews/reviews.actions";
+import ProductReviewForm from "../../product-review-system/product-review-form/product-review-form.component";
+import ProductReviewReviews from "../../product-review-system/product-review-reviews/product-review-reviews.component";
+import { fetchReviewsFromDb } from "../../../redux/reviews/reviews.actions";
 import {
   isFetchingReviewsSelector,
   usersReviewsSelector,
-} from "../../redux/reviews/reviews.selectors";
+} from "../../../redux/reviews/reviews.selectors";
 
 // TODO: After completing all the functionality move this
 // effect etc. to the product-review-reviews component.
@@ -28,7 +28,7 @@ const ProductReview = ({ fetchReviewsFromDb, isFetchingReviews, reviews }) => {
   }, [fetchReviewsFromDb, superCategory, category, productId]);
 
   return (
-    <Row>
+    <Row className="mb-3">
       <Col xs={12} md={6} as="section">
         <ProductReviewReviews
           isLoading={isFetchingReviews}

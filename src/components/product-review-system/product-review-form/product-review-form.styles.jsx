@@ -10,3 +10,10 @@ export const ProductReviewFormHeading = styled.h3`
 export const SubmitReviewBtnContainer = styled.div`
   text-align: end;
 `;
+
+export const ReviewTextareaNoCurrentUserStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+`;

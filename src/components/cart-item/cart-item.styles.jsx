@@ -15,13 +15,15 @@ export const ProductContainer = styled.section`
 export const ProductThumbnailContainer = styled.div`
   flex-basis: 35%;
   display: flex;
-  height: 68px;
+  height: 70px;
   margin-right: 0.2rem;
 `;
 
 export const ProductThumbnail = styled.img`
   height: 100%;
   width: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
 `;
 
 export const ProductInfo = styled.div`
