@@ -18,22 +18,15 @@ const CheckoutProduct = ({
   return (
     <ProductDetailsContainer className="d-flex flex-column flex-md-row">
       <ProductImageContainer as={Col}>
-        <img
-          src={background_image}
-          alt="Preview of this product"
-          aria-labelledby="product-image"
-        />
+        <img src={background_image} alt="Preview of the article" />
       </ProductImageContainer>
-      <Col aria-labelledby="product-name" className="mt-2 mt-md-0">
-        {name}
-      </Col>
-      <Col aria-labelledby="product-price" className="mt-2 mt-md-0">
+      <Col className="mt-2 mt-md-0">{name}</Col>
+      <Col className="mt-2 mt-md-0" aria-label="Price of article">
         &euro; {price}
       </Col>
       <Col className="mt-2 mt-md-0">
         <QtyArrow
           role="button"
-          aria-labelledby="product-quantity"
           aria-label="Decrease quantity of this article"
           tabIndex="0"
           onClick={() => {
@@ -47,15 +40,11 @@ const CheckoutProduct = ({
         >
           &#10094;
         </QtyArrow>{" "}
-        <ProductQty
-          id="product-quantity"
-          aria-label="Current Quantity of the product"
-        >
+        <ProductQty aria-label="Current Quantity of the article">
           {qty}
         </ProductQty>{" "}
         <QtyArrow
           role="button"
-          aria-labelledby="product-quantity"
           aria-label="Increase Quantity of this article"
           tabIndex="0"
           onClick={() => {
@@ -74,7 +63,6 @@ const CheckoutProduct = ({
         <span
           role="button"
           className="ml-auto ml-md-0 p-3 p-md-0"
-          aria-labelledby="remove-product"
           aria-label="Remove this article from the cart"
           tabIndex="0"
           onClick={() => removeProductFromCart(product)}

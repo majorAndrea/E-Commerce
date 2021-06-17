@@ -21,13 +21,13 @@ import {
 const Checkout = ({ cartProducts, cartTotal }) => {
   return (
     <Container>
-      <CheckoutContainer>
+      <CheckoutContainer as="article">
         <CheckoutHeader className="d-none d-md-flex">
-          <Col id="product-image">Preview</Col>
-          <Col id="product-name">Name</Col>
-          <Col id="product-price">Price</Col>
-          <Col id="product-quantity">Quantity</Col>
-          <Col id="remove-product">Remove</Col>
+          <Col>Preview</Col>
+          <Col>Name</Col>
+          <Col>Price</Col>
+          <Col>Quantity</Col>
+          <Col>Remove</Col>
         </CheckoutHeader>
         {cartProducts.map((product) => (
           <CheckoutProductContainer key={product.id} product={product} />

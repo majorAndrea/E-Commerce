@@ -27,6 +27,7 @@ const PaypPalOrder = ({
   match,
   checkoutProcessSuccess,
   cartProducts,
+  currentUser,
 }) => {
   const { setAlertDetails } = useContext(CustomAlertContext);
 
@@ -84,6 +85,7 @@ const PaypPalOrder = ({
       onApprove={onApprove}
       onError={onError}
       onCancel={onCancel}
+      disabled={currentUser ? false : true}
     />
   );
 };

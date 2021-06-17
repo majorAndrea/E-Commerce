@@ -40,36 +40,38 @@ const App = ({ currentUser, isUserLoggedIn }) => {
           <CustomAlert />
 
           <React.Suspense fallback={<Spinner />}>
-            <Switch>
-              <Route exact path="/" component={Main} />
-              <Route
-                exact
-                path="/signin"
-                render={() =>
-                  currentUser ? <Redirect to="/" /> : <SignInUp />
-                }
-              />
+            <main>
+              <Switch>
+                <Route exact path="/" component={Main} />
+                <Route
+                  exact
+                  path="/signin"
+                  render={() =>
+                    currentUser ? <Redirect to="/" /> : <SignInUp />
+                  }
+                />
 
-              <Route exact path="/checkout" component={Checkout} />
+                <Route exact path="/checkout" component={Checkout} />
 
-              <Route
-                exact
-                path="/checkout/:orderId"
-                component={CheckoutConfirm}
-              />
+                <Route
+                  exact
+                  path="/checkout/:orderId"
+                  component={CheckoutConfirm}
+                />
 
-              <Route
-                exact
-                path="/:superCategory/:category"
-                component={Products}
-              />
+                <Route
+                  exact
+                  path="/:superCategory/:category"
+                  component={Products}
+                />
 
-              <Route
-                exact
-                path="/:superCategory/:category/:productId"
-                component={Product}
-              />
-            </Switch>
+                <Route
+                  exact
+                  path="/:superCategory/:category/:productId"
+                  component={Product}
+                />
+              </Switch>
+            </main>
           </React.Suspense>
         </CustomAlertProvider>
       </ErrorBoundary>

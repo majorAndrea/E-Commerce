@@ -19,7 +19,7 @@ const UserProductReview = ({ details }) => {
 
   return (
     <ListGroup.Item className="pl-3">
-      <div className="position-relative mb-2">
+      <article className="position-relative mb-2">
         <ReviewsUsernameStyle>
           {reviewerDetails.name} says:
         </ReviewsUsernameStyle>
@@ -32,7 +32,7 @@ const UserProductReview = ({ details }) => {
         >
           Rated: {String(rating)} stars
         </RatingStarsStyle>
-      </div>
+      </article>
 
       <ReviewsTextStyle>{text}</ReviewsTextStyle>
     </ListGroup.Item>

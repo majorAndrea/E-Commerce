@@ -11,16 +11,16 @@ import {
 
 const Product = ({ item, history, match, superCategory }) => {
   return (
-    <CardStyle as={Card}>
+    <CardStyle as="article" className="card">
       <CardImgWrapper>
         <ProductImg
           src={item.background_image}
-          alt=""
+          alt="Preview of the article"
           objectfit={superCategory === "fashion" ? "scale-down" : "cover"}
         />
       </CardImgWrapper>
       <Card.Body>
-        <Card.Title>{item.name}</Card.Title>
+        <Card.Title as="h5">{item.name}</Card.Title>
         <CardDescWrapper as={Card.Text} style={{ height: "5rem" }}>
           {item.description}
         </CardDescWrapper>

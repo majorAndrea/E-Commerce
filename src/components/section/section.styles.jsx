@@ -19,7 +19,7 @@ export const Background = styled.div`
   background-size: cover;
   background-position: center;
   filter: brightness(0.5);
-  transition: filter 0.2s ease-out, transform 3.5s ease-out;
+  transition: filter 0.2s ease-out, transform 4s 0.15s linear;
 `;
 
 export const CategorySection = styled.article`
@@ -32,6 +32,10 @@ export const CategorySection = styled.article`
   border: 1px solid black;
 
   &:hover ${Background}, &:hover ${CategoryName} ${Background} {
+    ${brighterBackgroundAndScaling}
+  }
+
+  &:focus ${Background}, &:focus ${CategoryName} ${Background} {
     ${brighterBackgroundAndScaling}
   }
 

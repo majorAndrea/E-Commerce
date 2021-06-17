@@ -13,14 +13,14 @@ const Products = ({
   categoryProducts,
 }) => {
   return (
-    <Container as="article">
+    <Container as="section">
       <h2>
         {category.replace(category.charAt(0), category.charAt(0).toUpperCase())}
       </h2>
 
       <Row xs={1} md={3}>
         {categoryProducts.map((item) => (
-          <Col as="section" key={item.id}>
+          <Col key={item.id}>
             <Product item={item} superCategory={superCategory} />
           </Col>
         ))}

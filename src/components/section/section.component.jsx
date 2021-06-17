@@ -13,7 +13,13 @@ const Section = ({
     <CategorySection
       xs
       onClick={() => history.push(`${match.url}${url}`)}
+      onKeyUp={(e) => {
+        if (e.code === "Enter") {
+          history.push(`${match.url}${url}`);
+        }
+      }}
       className="mb-3 mb-md-0"
+      tabIndex="0"
     >
       <Background
         aria-hidden

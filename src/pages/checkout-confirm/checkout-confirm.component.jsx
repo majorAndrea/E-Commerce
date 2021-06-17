@@ -12,11 +12,11 @@ import Card from "react-bootstrap/Card";
 
 const CheckoutConfirm = ({ checkoutSuccess, currentUser }) => {
   return (
-    <Container as="article">
+    <Container>
       <Row>
         <Col as="section" xs={12} md={8}>
           <Card>
-            <Card.Body>
+            <Card.Body as="article">
               <h2>Order Received!</h2>
               <p>
                 Thank you{" "}
@@ -31,13 +31,13 @@ const CheckoutConfirm = ({ checkoutSuccess, currentUser }) => {
             </Card.Body>
           </Card>
         </Col>
-        <Col as="section">
-          <ListGroup>
+        <Col as="section" className="mt-4 mt-md-0">
+          <ListGroup as="aside">
             <ListGroup.Item>
               <h2>Your order:</h2>
             </ListGroup.Item>
             {checkoutSuccess.products_bought.map((product) => (
-              <ListGroup.Item key={product.id}>
+              <ListGroup.Item key={product.id} as="article">
                 <CartItem
                   productName={product.name}
                   qty={product.qty}

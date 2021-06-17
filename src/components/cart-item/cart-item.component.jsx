@@ -9,7 +9,7 @@ import {
 
 const CartItem = ({ productName, qty, price, image }) => {
   return (
-    <ProductContainer as={Dropdown} href="#/action-1" id="product-container">
+    <ProductContainer as={Dropdown}>
       <ProductThumbnailContainer>
         <ProductThumbnail src={image} alt="One item of the cart" />
       </ProductThumbnailContainer>
