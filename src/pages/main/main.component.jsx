@@ -15,6 +15,7 @@ class Main extends React.Component {
       <Container>
         <CategoryContainer categoryName="Technology" retrive="tech" />
         <CategoryContainer categoryName="Fashion" retrive="fashion" />
+        <CategoryContainer categoryName="Forniture" retrive="forniture" />
       </Container>
     );
   }

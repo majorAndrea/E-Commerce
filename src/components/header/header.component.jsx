@@ -34,14 +34,14 @@ const Header = ({ currentUser, logoutUser }) => {
             <Link className="nav-link" to="/">
               Home
             </Link>
-            <Link className="nav-link" to="/">
-              Best Sellers
+            <Link className="nav-link" to="/tech/smartphones">
+              Smartphones
             </Link>
-            <Link className="nav-link" to="/">
-              Tech
+            <Link className="nav-link" to="/fashion/jackets">
+              Jackets
             </Link>
-            <Link className="nav-link" to="/">
-              Fashion
+            <Link className="nav-link" to="/forniture/beds">
+              Beds
             </Link>
           </Nav>
           <Nav className="ml-auto" as="section">
