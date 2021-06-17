@@ -1,17 +1,9 @@
 import styled, { css } from "styled-components";
 
-const brighterBackground = css`
-  filter: brightness(0.8);
+const brighterBackgroundAndScaling = css`
+  filter: brightness(0.75);
+  transform: scale(1.1);
   cursor: pointer;
-`;
-
-export const CategorySection = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 250px;
-  overflow: hidden;
-  padding: 0;
 `;
 
 export const CategoryName = styled.h3`
@@ -23,18 +15,27 @@ export const CategoryName = styled.h3`
 
 export const Background = styled.div`
   width: 100%;
-  height: 95%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   filter: brightness(0.5);
-  transition: filter 0.2s;
+  transition: filter 0.2s ease-out, transform 3.5s ease-out;
+`;
+
+export const CategorySection = styled.article`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+  overflow: hidden;
+  padding: 0;
   border: 1px solid black;
 
-  :hover {
-    ${brighterBackground}
+  &:hover ${Background}, &:hover ${CategoryName} ${Background} {
+    ${brighterBackgroundAndScaling}
   }
 
-  ${CategoryName}:hover & {
-    ${brighterBackground}
+  &:not(:hover) ${Background}, &:hover ${CategoryName} ${Background} {
+    transition: none;
   }
 `;
