@@ -19,7 +19,7 @@ export const Background = styled.div`
   background-size: cover;
   background-position: center;
   filter: brightness(0.5);
-  transition: filter 0.2s ease-out, transform 4s 0.15s linear;
+  transition: filter 0.2s ease-out, transform 5s 0.15s linear;
 `;
 
 export const CategorySection = styled.article`

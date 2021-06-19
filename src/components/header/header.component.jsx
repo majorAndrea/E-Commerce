@@ -31,16 +31,16 @@ const Header = ({ currentUser, logoutUser }) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto" as="section">
-            <Link className="nav-link" to="/" tabIndex="0">
+            <Link className="nav-link" to="/">
               Home
             </Link>
-            <Link className="nav-link" to="/tech/smartphones" tabIndex="0">
+            <Link className="nav-link" to="/shop/tech/smartphones">
               Smartphones
             </Link>
-            <Link className="nav-link" to="/fashion/jackets" tabIndex="0">
+            <Link className="nav-link" to="/shop/fashion/jackets">
               Jackets
             </Link>
-            <Link className="nav-link" to="/forniture/beds" tabIndex="0">
+            <Link className="nav-link" to="/shop/forniture/beds">
               Beds
             </Link>
           </Nav>

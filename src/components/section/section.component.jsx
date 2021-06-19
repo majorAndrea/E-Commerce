@@ -6,16 +6,15 @@ const Section = ({
   background = "https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=60",
   sectionName = "No Section Name",
   history,
-  match,
   url = "No URL",
 }) => {
   return (
     <CategorySection
       xs
-      onClick={() => history.push(`${match.url}${url}`)}
+      onClick={() => history.push(`/shop/${url}`)}
       onKeyUp={(e) => {
         if (e.code === "Enter") {
-          history.push(`${match.url}${url}`);
+          history.push(`/shop/${url}`);
         }
       }}
       className="mb-3 mb-md-0"

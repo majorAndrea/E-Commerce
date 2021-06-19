@@ -51,25 +51,31 @@ const App = ({ currentUser, isUserLoggedIn }) => {
                   }
                 />
 
-                <Route exact path="/checkout" component={Checkout} />
+                <Route
+                  exact
+                  path="/checkout/steps/:step"
+                  component={Checkout}
+                />
 
                 <Route
                   exact
-                  path="/checkout/:orderId"
+                  path="/checkout/confirm/:orderId"
                   component={CheckoutConfirm}
                 />
 
                 <Route
                   exact
-                  path="/:superCategory/:category"
+                  path="/shop/:superCategory/:category"
                   component={Products}
                 />
 
                 <Route
                   exact
-                  path="/:superCategory/:category/:productId"
+                  path="/shop/:superCategory/:category/:productId"
                   component={Product}
                 />
+
+                <Route path="/*" render={() => <h1>Not Found</h1>} />
               </Switch>
             </main>
           </React.Suspense>
