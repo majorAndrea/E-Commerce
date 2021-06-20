@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { setUserCheckoutPersonalInfo } from "../../../redux/user/user.actions";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-const CheckoutStepOne = () => {
+const CheckoutStepOne = ({ setUserCheckoutPersonalInfo }) => {
   const history = useHistory();
   const [validated, setValidated] = useState(false);
+  const [userPersonalInfo, setUserPersonalInfo] = useState({
+    firstname: null,
+    lastname: null,
+    email: null,
+  });
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -18,6 +25,7 @@ const CheckoutStepOne = () => {
       return;
     }
     history.push("/checkout/steps/two");
+    setUserCheckoutPersonalInfo(userPersonalInfo);
   };
 
   return (
@@ -27,7 +35,14 @@ const CheckoutStepOne = () => {
           <Col xs={12}>
             <Form.Group controlId="formGridEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control required type="email" placeholder="Enter email" />
+              <Form.Control
+                required
+                type="email"
+                placeholder="Enter email"
+                onChange={({ target: { value } }) =>
+                  setUserPersonalInfo({ ...userPersonalInfo, email: value })
+                }
+              />
               <Form.Control.Feedback>OK!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
                 Please provide a valid email.
@@ -37,7 +52,14 @@ const CheckoutStepOne = () => {
           <Col className="d-block d-sm-flex justify-content-sm-between">
             <Form.Group controlId="formFirstname" className="mr-0 mr-sm-3">
               <Form.Label>First name</Form.Label>
-              <Form.Control required placeholder="Your first name" />
+              <Form.Control
+                type="text"
+                required
+                placeholder="Your first name"
+                onChange={({ target: { value } }) =>
+                  setUserPersonalInfo({ ...userPersonalInfo, firstname: value })
+                }
+              />
               <Form.Control.Feedback>OK!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
                 Your first name is required.
@@ -46,7 +68,14 @@ const CheckoutStepOne = () => {
 
             <Form.Group className="mb-3" controlId="formLastname">
               <Form.Label>Last name</Form.Label>
-              <Form.Control required placeholder="Your last name" />
+              <Form.Control
+                type="text"
+                required
+                placeholder="Your last name"
+                onChange={({ target: { value } }) =>
+                  setUserPersonalInfo({ ...userPersonalInfo, lastname: value })
+                }
+              />
               <Form.Control.Feedback>OK!</Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
                 Your last name is required.
@@ -63,4 +92,9 @@ const CheckoutStepOne = () => {
   );
 };
 
-export default CheckoutStepOne;
+const mapDispatchToProps = (dispatch) => ({
+  setUserCheckoutPersonalInfo: (userPersonalInfo) =>
+    dispatch(setUserCheckoutPersonalInfo(userPersonalInfo)),
+});
+
+export default connect(null, mapDispatchToProps)(CheckoutStepOne);

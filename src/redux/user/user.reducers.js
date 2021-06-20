@@ -3,6 +3,19 @@ import UsersActionTypes from "./user.types.js";
 const INITIAL_STATE = {
   currentUser: null,
   error: null,
+  checkoutPersonal: {
+    firstname: null,
+    lastname: null,
+    email: null,
+  },
+  checkoutSpedition: {
+    country: null,
+    state: null,
+    city: null,
+    zipCode: null,
+    addressOne: null,
+    addressTwo: null,
+  },
 };
 
 const userReducers = (state = INITIAL_STATE, action) => {
@@ -25,6 +38,16 @@ const userReducers = (state = INITIAL_STATE, action) => {
         ...state,
         currentUser: null,
         error: null,
+      };
+    case UsersActionTypes.SET_USER_CHECKOUT_PERSONAL_INFO:
+      return {
+        ...state,
+        checkoutPersonal: { ...action.payload },
+      };
+    case UsersActionTypes.SET_USER_CHECKOUT_SPEDITION_INFO:
+      return {
+        ...state,
+        checkoutSpedition: { ...action.payload },
       };
     default:
       return state;

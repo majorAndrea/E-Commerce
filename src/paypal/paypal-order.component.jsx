@@ -5,7 +5,6 @@ import { createStructuredSelector } from "reselect";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { withRouter } from "react-router-dom";
 import {
-  checkoutProcessStart,
   checkoutProcessCancel,
   checkoutProcessSuccess,
   checkoutProcessFail,
@@ -91,7 +90,6 @@ const PaypPalOrder = ({
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  checkoutProcessStart: () => dispatch(checkoutProcessStart()),
   checkoutProcessSuccess: (details) =>
     dispatch(checkoutProcessSuccess(details)),
   checkoutProcessFail: (details) => dispatch(checkoutProcessFail(details)),
