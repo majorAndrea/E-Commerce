@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setUserCheckoutPersonalInfo } from "../../../redux/user/user.actions";
+import { setCheckoutPersonalInfo } from "../../../redux/checkout/checkout.actions";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../../redux/user/user.selectors";
+import { selectCheckoutInfoPersonal } from "../../../redux/checkout/checkout.selectors";
 
-const CheckoutStepOne = ({ setUserCheckoutPersonalInfo }) => {
+const CheckoutStepOne = ({
+  setCheckoutPersonalInfo,
+  currentUser,
+  checkoutPersonalInfo,
+}) => {
   const history = useHistory();
   const [validated, setValidated] = useState(false);
+  const [autoFilling, setAutoFilling] = useState(
+    !!checkoutPersonalInfo.email.length
+  );
+
   const [userPersonalInfo, setUserPersonalInfo] = useState({
-    firstname: null,
-    lastname: null,
-    email: null,
+    ...checkoutPersonalInfo,
   });
 
   const handleSubmit = (e) => {
@@ -24,8 +33,32 @@ const CheckoutStepOne = ({ setUserCheckoutPersonalInfo }) => {
       setValidated(true);
       return;
     }
+    e.preventDefault();
     history.push("/checkout/steps/two");
-    setUserCheckoutPersonalInfo(userPersonalInfo);
+    setCheckoutPersonalInfo(userPersonalInfo);
+  };
+
+  const handleSwitch = ({ target: { checked } }) => {
+    setAutoFilling(checked);
+    if (checked) {
+      setUserPersonalInfo({
+        firstname:
+          checkoutPersonalInfo?.firstname ||
+          currentUser?.displayName.split(" ")[0] ||
+          "",
+        lastname:
+          checkoutPersonalInfo?.lastname ||
+          currentUser?.displayName.split(" ")[1] ||
+          "",
+        email: checkoutPersonalInfo?.email || currentUser?.email || "",
+      });
+      return;
+    }
+    setUserPersonalInfo({
+      firstname: "",
+      lastname: "",
+      email: "",
+    });
   };
 
   return (
@@ -39,6 +72,7 @@ const CheckoutStepOne = ({ setUserCheckoutPersonalInfo }) => {
                 required
                 type="email"
                 placeholder="Enter email"
+                value={userPersonalInfo.email}
                 onChange={({ target: { value } }) =>
                   setUserPersonalInfo({ ...userPersonalInfo, email: value })
                 }
@@ -55,6 +89,7 @@ const CheckoutStepOne = ({ setUserCheckoutPersonalInfo }) => {
               <Form.Control
                 type="text"
                 required
+                value={userPersonalInfo.firstname}
                 placeholder="Your first name"
                 onChange={({ target: { value } }) =>
                   setUserPersonalInfo({ ...userPersonalInfo, firstname: value })
@@ -71,6 +106,7 @@ const CheckoutStepOne = ({ setUserCheckoutPersonalInfo }) => {
               <Form.Control
                 type="text"
                 required
+                value={userPersonalInfo.lastname}
                 placeholder="Your last name"
                 onChange={({ target: { value } }) =>
                   setUserPersonalInfo({ ...userPersonalInfo, lastname: value })
@@ -83,18 +119,37 @@ const CheckoutStepOne = ({ setUserCheckoutPersonalInfo }) => {
             </Form.Group>
           </Col>
         </Row>
-
-        <Button variant="success" type="submit">
-          Continue
-        </Button>
+        <div className="d-flex justify-content-end">
+          <Button className="d-block" variant="success" type="submit">
+            Continue
+          </Button>
+        </div>
+        <hr />
       </Form>
+      <Form.Check
+        type="switch"
+        id="custom-switch"
+        checked={autoFilling}
+        label={
+          autoFilling
+            ? "Disable auto-filling of personal info"
+            : "Enable auto-filling of personal info"
+        }
+        className="align-self-center"
+        onChange={handleSwitch}
+      />
     </Col>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setUserCheckoutPersonalInfo: (userPersonalInfo) =>
-    dispatch(setUserCheckoutPersonalInfo(userPersonalInfo)),
+  setCheckoutPersonalInfo: (userPersonalInfo) =>
+    dispatch(setCheckoutPersonalInfo(userPersonalInfo)),
 });
 
-export default connect(null, mapDispatchToProps)(CheckoutStepOne);
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  checkoutPersonalInfo: selectCheckoutInfoPersonal,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutStepOne);

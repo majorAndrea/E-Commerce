@@ -22,6 +22,7 @@ const signInUser = function* (user) {
     signInSuccess({
       id: userSnapshot.id,
       displayName: userSnapshot.data().displayName,
+      email: userSnapshot.data().email,
     })
   );
 };

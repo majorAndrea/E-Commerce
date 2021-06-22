@@ -47,7 +47,7 @@ const CartDropDown = ({ cartProducts, cartTotal, cartQty, history }) => {
               variant="dark"
               size="sm"
               id="cart-dropdown-button"
-              onClickCapture={() => history.push("/checkout")}
+              onClickCapture={() => history.push("/checkout/steps/one")}
               className="checkout-dropdown-btn"
             >
               Checkout

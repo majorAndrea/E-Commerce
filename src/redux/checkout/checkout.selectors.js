@@ -26,3 +26,13 @@ export const checkoutCancelSelector = createSelector(
   [checkoutSelector],
   (checkout) => checkout.cancel
 );
+
+export const selectCheckoutInfoPersonal = createSelector(
+  [selectCheckout],
+  (checkout) => checkout.checkoutPersonal
+);
+
+export const selectCheckoutInfoSpedition = createSelector(
+  [selectCheckout],
+  (checkout) => checkout.checkoutSpedition
+);

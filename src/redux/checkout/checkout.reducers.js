@@ -5,6 +5,19 @@ const INITIAL_STATE = {
   success: null,
   failure: null,
   cancel: null,
+  checkoutPersonal: {
+    firstname: "",
+    lastname: "",
+    email: "",
+  },
+  checkoutSpedition: {
+    country: "",
+    state: "",
+    city: "",
+    zipCode: "",
+    addressOne: "",
+    addressTwo: "",
+  },
 };
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +41,16 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE,
         cancel: action.payload,
+      };
+    case CheckoutActionTypes.SET_CHECKOUT_PERSONAL_INFO:
+      return {
+        ...state,
+        checkoutPersonal: { ...action.payload },
+      };
+    case CheckoutActionTypes.SET_CHECKOUT_SPEDITION_INFO:
+      return {
+        ...state,
+        checkoutSpedition: { ...action.payload },
       };
     default:
       return state;

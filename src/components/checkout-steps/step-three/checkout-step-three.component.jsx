@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  selectUserCheckoutInfoPersonal,
-  selectUserCheckoutInfoSpedition,
-} from "../../../redux/user/user.selectors";
+  selectCheckoutInfoPersonal,
+  selectCheckoutInfoSpedition,
+} from "../../../redux/checkout/checkout.selectors";
 import { createStructuredSelector } from "reselect";
 import { useHistory } from "react-router";
 import Button from "react-bootstrap/Button";
@@ -17,6 +17,7 @@ const CheckoutStepThree = ({ userPersonalInfo, userSpeditionInfo }) => {
   const handleGoBack = () => {
     history.push(`/checkout/steps/two`);
   };
+
   return (
     <Col>
       <Row className="mt-3">
@@ -32,10 +33,10 @@ const CheckoutStepThree = ({ userPersonalInfo, userSpeditionInfo }) => {
           <h5>Spedition</h5>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              {userSpeditionInfo.country}, {userSpeditionInfo.state}
+              {userSpeditionInfo.country} {userSpeditionInfo.state}
             </ListGroup.Item>
             <ListGroup.Item>
-              {userSpeditionInfo.city}, {userSpeditionInfo.zipCode}
+              {userSpeditionInfo.city} {userSpeditionInfo.zipCode}
             </ListGroup.Item>
             <ListGroup.Item>{userSpeditionInfo.addressOne}</ListGroup.Item>
             <ListGroup.Item>{userSpeditionInfo.addressTwo}</ListGroup.Item>
@@ -50,7 +51,11 @@ const CheckoutStepThree = ({ userPersonalInfo, userSpeditionInfo }) => {
           <Button type="dark" variant="dark" onClick={handleGoBack}>
             Go Back
           </Button>
-          <Button type="button" variant="success">
+          <Button
+            type="button"
+            variant="success"
+            onClick={() => history.push(`/checkout/steps/final`)}
+          >
             Confirm
           </Button>
         </div>
@@ -60,8 +65,8 @@ const CheckoutStepThree = ({ userPersonalInfo, userSpeditionInfo }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  userPersonalInfo: selectUserCheckoutInfoPersonal,
-  userSpeditionInfo: selectUserCheckoutInfoSpedition,
+  userPersonalInfo: selectCheckoutInfoPersonal,
+  userSpeditionInfo: selectCheckoutInfoSpedition,
 });
 
 export default connect(mapStateToProps, null)(CheckoutStepThree);

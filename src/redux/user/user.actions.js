@@ -49,13 +49,3 @@ export const logoutUser = () => ({
 export const logoutUserSuccess = () => ({
   type: UserActionTypes.LOGOUT_USER_SUCCESS,
 });
-
-export const setUserCheckoutPersonalInfo = (payload) => ({
-  type: UserActionTypes.SET_USER_CHECKOUT_PERSONAL_INFO,
-  payload,
-});
-
-export const setUserCheckoutSpeditionInfo = (payload) => ({
-  type: UserActionTypes.SET_USER_CHECKOUT_SPEDITION_INFO,
-  payload,
-});

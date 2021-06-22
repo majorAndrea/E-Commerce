@@ -18,7 +18,7 @@ import {
   CartTotal,
 } from "./checkout.styles";
 
-const Checkout = ({ cartProducts, cartTotal }) => {
+const CheckoutStepFinal = ({ cartProducts, cartTotal }) => {
   return (
     <Container>
       <CheckoutContainer as="article">
@@ -61,4 +61,4 @@ const mapStateToProps = createStructuredSelector({
   cartTotal: selectCartTotal,
 });
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps)(CheckoutStepFinal);

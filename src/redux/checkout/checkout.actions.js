@@ -18,3 +18,13 @@ export const checkoutProcessCancel = (details) => ({
   type: CheckoutActionTypes.CHECKOUT_PROCESS_CANCEL,
   payload: details,
 });
+
+export const setCheckoutPersonalInfo = (payload) => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_PERSONAL_INFO,
+  payload,
+});
+
+export const setCheckoutSpeditionInfo = (payload) => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_SPEDITION_INFO,
+  payload,
+});
