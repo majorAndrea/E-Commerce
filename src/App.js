@@ -10,6 +10,7 @@ import { CustomAlertProvider } from "./providers/custom-alert/custom-alert.provi
 import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 import Footer from "./components/footer/footer.component.jsx";
 import Spinner from "./components/spinner/spinner.component";
+import CheckoutStepFinal from "./components/checkout-steps/step-final/checkout-step-final.component";
 import "./assets/styles/starability-basic-min.css";
 import "./App.css";
 
@@ -53,6 +54,12 @@ const App = ({ currentUser, isUserLoggedIn }) => {
 
                 <Route
                   exact
+                  path="/checkout/steps/final"
+                  component={CheckoutStepFinal}
+                />
+
+                <Route
+                  exact
                   path="/checkout/steps/:step"
                   component={Checkout}
                 />
@@ -75,7 +82,7 @@ const App = ({ currentUser, isUserLoggedIn }) => {
                   component={Product}
                 />
 
-                <Route path="/*" render={() => <h1>Not Found</h1>} />
+                <Route path="*" render={() => <h1>Not Found</h1>} />
               </Switch>
             </main>
           </React.Suspense>

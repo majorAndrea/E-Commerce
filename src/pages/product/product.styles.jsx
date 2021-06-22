@@ -36,6 +36,7 @@ export const ProductName = styled.h2`
   padding: 0;
   margin: 0;
   ${headingStyle}
+  font-size: xx-large;
 `;
 
 export const ProductSpec = styled.span`

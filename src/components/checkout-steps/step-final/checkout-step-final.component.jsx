@@ -9,7 +9,6 @@ import {
 import CheckoutProductContainer from "../../../components/checkout-product/checkout-product.container.js";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-
 import {
   CheckoutContainer,
   CheckoutHeader,

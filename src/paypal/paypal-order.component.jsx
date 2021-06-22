@@ -14,7 +14,11 @@ import {
   selectCartProducts,
   selectCartTotal,
 } from "../redux/cart/cart.selectors.js";
-import { checkoutStartSelector } from "../redux/checkout/checkout.selectors.js";
+import {
+  checkoutStartSelector,
+  selectCheckoutInfoPersonal,
+  selectCheckoutInfoSpedition,
+} from "../redux/checkout/checkout.selectors.js";
 import {
   CustomAlertContext,
   DEFAULT_VALUES,
@@ -27,6 +31,8 @@ const PaypPalOrder = ({
   checkoutProcessSuccess,
   cartProducts,
   currentUser,
+  userPersonalInfo,
+  userSpeditionInfo,
 }) => {
   const { setAlertDetails } = useContext(CustomAlertContext);
 
@@ -51,8 +57,16 @@ const PaypPalOrder = ({
   const onApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
       details.products_bought = cartProducts;
+      details.spedition_info = {
+        personal: {
+          ...userPersonalInfo,
+        },
+        spedition: {
+          ...userSpeditionInfo,
+        },
+      };
       checkoutProcessSuccess(details);
-      history.push(`${match.url}/${details.id}`);
+      history.push(`/checkout/confirm/${details.id}`);
     });
   };
 
@@ -101,6 +115,8 @@ const mapStatsToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   cartProducts: selectCartProducts,
   cartTotal: selectCartTotal,
+  userPersonalInfo: selectCheckoutInfoPersonal,
+  userSpeditionInfo: selectCheckoutInfoSpedition,
 });
 
 export default compose(

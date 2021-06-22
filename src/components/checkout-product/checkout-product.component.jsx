@@ -16,8 +16,8 @@ const CheckoutProduct = ({
 }) => {
   const { background_image, name, price, qty } = product;
   return (
-    <ProductDetailsContainer className="d-flex flex-column flex-md-row">
-      <ProductImageContainer as={Col}>
+    <ProductDetailsContainer className="d-flex flex-column flex-md-row pt-4 pt-md-0">
+      <ProductImageContainer as={Col} className="">
         <img src={background_image} alt="Preview of the article" />
       </ProductImageContainer>
       <Col className="mt-2 mt-md-0">{name}</Col>

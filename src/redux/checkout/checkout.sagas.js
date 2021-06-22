@@ -5,11 +5,26 @@ import { emptyCart } from "../cart/cart.actions.js";
 
 const checkoutSuccess = function* ({ payload }) {
   try {
-    const { create_time, id, payer, status, update_time, products_bought } =
-      yield payload;
+    const {
+      create_time,
+      id,
+      payer,
+      status,
+      update_time,
+      products_bought,
+      spedition_info,
+    } = yield payload;
     yield firestore
       .collection("orders")
-      .add({ create_time, id, payer, status, update_time, products_bought });
+      .add({
+        create_time,
+        id,
+        payer,
+        status,
+        update_time,
+        products_bought,
+        spedition_info,
+      });
     yield put(emptyCart());
   } catch (error) {
     alert(error);
