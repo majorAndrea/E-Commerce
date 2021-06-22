@@ -24,7 +24,7 @@ export const setCheckoutPersonalInfo = (payload) => ({
   payload,
 });
 
-export const setCheckoutSpeditionInfo = (payload) => ({
-  type: CheckoutActionTypes.SET_CHECKOUT_SPEDITION_INFO,
+export const setCheckoutShipmentInfo = (payload) => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_SHIPMENT_INFO,
   payload,
 });

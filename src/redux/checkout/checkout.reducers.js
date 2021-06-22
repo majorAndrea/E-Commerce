@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     lastname: "",
     email: "",
   },
-  checkoutSpedition: {
+  checkoutShipment: {
     country: "",
     state: "",
     city: "",
@@ -47,10 +47,10 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
         ...state,
         checkoutPersonal: { ...action.payload },
       };
-    case CheckoutActionTypes.SET_CHECKOUT_SPEDITION_INFO:
+    case CheckoutActionTypes.SET_CHECKOUT_SHIPMENT_INFO:
       return {
         ...state,
-        checkoutSpedition: { ...action.payload },
+        checkoutShipment: { ...action.payload },
       };
     default:
       return state;

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   selectCheckoutInfoPersonal,
-  selectCheckoutInfoSpedition,
+  selectCheckoutInfoShipment,
 } from "../../../redux/checkout/checkout.selectors";
 import { createStructuredSelector } from "reselect";
 import { useHistory } from "react-router";
@@ -12,7 +12,7 @@ import Row from "react-bootstrap/Row";
 import ListGroup from "react-bootstrap/ListGroup";
 import { motion } from "framer-motion";
 
-const CheckoutStepThree = ({ userPersonalInfo, userSpeditionInfo }) => {
+const CheckoutStepThree = ({ userPersonalInfo, userShipmentInfo }) => {
   const history = useHistory();
 
   const handleGoBack = () => {
@@ -37,16 +37,16 @@ const CheckoutStepThree = ({ userPersonalInfo, userSpeditionInfo }) => {
             </ListGroup>
           </Col>
           <Col>
-            <h5>Spedition</h5>
+            <h5>Shipment</h5>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                {userSpeditionInfo.country} {userSpeditionInfo.state}
+                {userShipmentInfo.country} {userShipmentInfo.state}
               </ListGroup.Item>
               <ListGroup.Item>
-                {userSpeditionInfo.city} {userSpeditionInfo.zipCode}
+                {userShipmentInfo.city} {userShipmentInfo.zipCode}
               </ListGroup.Item>
-              <ListGroup.Item>{userSpeditionInfo.addressOne}</ListGroup.Item>
-              <ListGroup.Item>{userSpeditionInfo.addressTwo}</ListGroup.Item>
+              <ListGroup.Item>{userShipmentInfo.addressOne}</ListGroup.Item>
+              <ListGroup.Item>{userShipmentInfo.addressTwo}</ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>
@@ -74,7 +74,7 @@ const CheckoutStepThree = ({ userPersonalInfo, userSpeditionInfo }) => {
 
 const mapStateToProps = createStructuredSelector({
   userPersonalInfo: selectCheckoutInfoPersonal,
-  userSpeditionInfo: selectCheckoutInfoSpedition,
+  userShipmentInfo: selectCheckoutInfoShipment,
 });
 
 export default connect(mapStateToProps, null)(CheckoutStepThree);

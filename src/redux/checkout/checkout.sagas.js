@@ -12,19 +12,17 @@ const checkoutSuccess = function* ({ payload }) {
       status,
       update_time,
       products_bought,
-      spedition_info,
+      shipment_info,
     } = yield payload;
-    yield firestore
-      .collection("orders")
-      .add({
-        create_time,
-        id,
-        payer,
-        status,
-        update_time,
-        products_bought,
-        spedition_info,
-      });
+    yield firestore.collection("orders").add({
+      create_time,
+      id,
+      payer,
+      status,
+      update_time,
+      products_bought,
+      shipment_info,
+    });
     yield put(emptyCart());
   } catch (error) {
     alert(error);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { setCheckoutSpeditionInfo } from "../../../redux/checkout/checkout.actions";
+import { setCheckoutShipmentInfo } from "../../../redux/checkout/checkout.actions";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,12 +8,12 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import csc from "country-state-city";
 import { createStructuredSelector } from "reselect";
-import { selectCheckoutInfoSpedition } from "../../../redux/checkout/checkout.selectors";
+import { selectCheckoutInfoShipment } from "../../../redux/checkout/checkout.selectors";
 import { motion } from "framer-motion";
 
 // TODO: Separate logic from view with container pattern.
 
-const CheckoutStepTwo = ({ setCheckoutSpeditionInfo, userSpeditionInfo }) => {
+const CheckoutStepTwo = ({ setCheckoutShipmentInfo, userShipmentInfo }) => {
   const history = useHistory();
 
   const [locations, setLocations] = useState({
@@ -23,7 +23,7 @@ const CheckoutStepTwo = ({ setCheckoutSpeditionInfo, userSpeditionInfo }) => {
   });
 
   const [userLocation, setUserLocation] = useState({
-    ...userSpeditionInfo,
+    ...userShipmentInfo,
   });
 
   const [validated, setValidated] = useState(false);
@@ -86,7 +86,7 @@ const CheckoutStepTwo = ({ setCheckoutSpeditionInfo, userSpeditionInfo }) => {
     const result = validateFormInputs(e.currentTarget.elements);
     if (result) {
       history.push("/checkout/steps/three");
-      setCheckoutSpeditionInfo(userLocation);
+      setCheckoutShipmentInfo(userLocation);
     } else {
       setValidated(true);
     }
@@ -277,12 +277,12 @@ const CheckoutStepTwo = ({ setCheckoutSpeditionInfo, userSpeditionInfo }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setCheckoutSpeditionInfo: (userLocation) =>
-    dispatch(setCheckoutSpeditionInfo(userLocation)),
+  setCheckoutShipmentInfo: (userLocation) =>
+    dispatch(setCheckoutShipmentInfo(userLocation)),
 });
 
 const mapStateToProps = createStructuredSelector({
-  userSpeditionInfo: selectCheckoutInfoSpedition,
+  userShipmentInfo: selectCheckoutInfoShipment,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutStepTwo);

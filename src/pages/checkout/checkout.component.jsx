@@ -11,10 +11,10 @@ import Container from "react-bootstrap/Container";
 import { createStructuredSelector } from "reselect";
 import {
   selectCheckoutInfoPersonal,
-  selectCheckoutInfoSpedition,
+  selectCheckoutInfoShipment,
 } from "../../redux/checkout/checkout.selectors";
 
-const Checkout = ({ checkoutInfoPersonal, checkoutInfoSpedition }) => {
+const Checkout = ({ checkoutInfoPersonal, checkoutInfoShipment }) => {
   let location = useLocation();
 
   const pathnameArray = location.pathname.split("/");
@@ -68,7 +68,7 @@ const Checkout = ({ checkoutInfoPersonal, checkoutInfoSpedition }) => {
             exact
             path="/checkout/steps/three"
             render={() =>
-              checkoutInfoSpedition.addressOne.length ? (
+              checkoutInfoShipment.addressOne.length ? (
                 <CheckoutStepThree />
               ) : (
                 <Redirect to="/checkout/steps/two" />
@@ -88,7 +88,7 @@ const Checkout = ({ checkoutInfoPersonal, checkoutInfoSpedition }) => {
 
 const mapStateToProps = createStructuredSelector({
   checkoutInfoPersonal: selectCheckoutInfoPersonal,
-  checkoutInfoSpedition: selectCheckoutInfoSpedition,
+  checkoutInfoShipment: selectCheckoutInfoShipment,
 });
 
 export default connect(mapStateToProps, null)(Checkout);

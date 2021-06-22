@@ -32,7 +32,7 @@ export const selectCheckoutInfoPersonal = createSelector(
   (checkout) => checkout.checkoutPersonal
 );
 
-export const selectCheckoutInfoSpedition = createSelector(
+export const selectCheckoutInfoShipment = createSelector(
   [selectCheckout],
-  (checkout) => checkout.checkoutSpedition
+  (checkout) => checkout.checkoutShipment
 );
