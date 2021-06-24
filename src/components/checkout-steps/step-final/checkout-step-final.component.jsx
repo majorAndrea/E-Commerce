@@ -2,6 +2,7 @@ import React from "react";
 import PayPalOrder from "../../../paypal/paypal-order.component.jsx";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../../redux/user/user.selectors";
 import {
   selectCartProducts,
   selectCartTotal,
@@ -17,7 +18,7 @@ import {
   CartTotal,
 } from "./checkout.styles";
 
-const CheckoutStepFinal = ({ cartProducts, cartTotal }) => {
+const CheckoutStepFinal = ({ cartProducts, cartTotal, currentUser }) => {
   return (
     <Container>
       <CheckoutContainer as="article">
@@ -43,12 +44,17 @@ const CheckoutStepFinal = ({ cartProducts, cartTotal }) => {
           </Col>
         </CheckoutFooter>
         <CheckoutPayMethods>
-          <Col aria-hidden></Col>
-          <Col aria-hidden></Col>
-          <Col aria-hidden></Col>
-          <Col>
+          <Col aria-hidden>
             <PayPalOrder amount={cartTotal} />
+            {currentUser ? null : (
+              <p className="text-muted">
+                You must create an account before proceeding with the payment.
+              </p>
+            )}
           </Col>
+          <Col aria-hidden></Col>
+          <Col aria-hidden></Col>
+          <Col aria-hidden></Col>
         </CheckoutPayMethods>
       </CheckoutContainer>
     </Container>
@@ -58,6 +64,7 @@ const CheckoutStepFinal = ({ cartProducts, cartTotal }) => {
 const mapStateToProps = createStructuredSelector({
   cartProducts: selectCartProducts,
   cartTotal: selectCartTotal,
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(CheckoutStepFinal);

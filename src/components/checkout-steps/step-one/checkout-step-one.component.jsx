@@ -150,6 +150,7 @@ const CheckoutStepOne = ({
           }
           className="align-self-center"
           onChange={handleSwitch}
+          disabled={!currentUser}
         />
       </motion.div>
     </Col>

@@ -39,7 +39,7 @@ export const CartTotal = styled.span`
 
 export const CheckoutPayMethods = styled.section`
   margin-top: 1rem;
-  font-size: larger;
+  font-size: initial;
   font-weight: lighter;
   text-align: center;
   display: flex;
