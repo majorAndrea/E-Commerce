@@ -20,11 +20,11 @@ const CheckoutStepThree = ({ userPersonalInfo, userShipmentInfo }) => {
   };
 
   return (
-    <Col xs={12} lg={6}>
+    <Col xs={12} lg={6} xl={5}>
       <motion.div
         initial={{ x: "+100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3, stiffness: 150 }}
+        transition={{ stiffness: 150 }}
         className="m-0 p-0"
       >
         <Row className="mt-3">
@@ -46,7 +46,9 @@ const CheckoutStepThree = ({ userPersonalInfo, userShipmentInfo }) => {
                 {userShipmentInfo.city} {userShipmentInfo.zipCode}
               </ListGroup.Item>
               <ListGroup.Item>{userShipmentInfo.addressOne}</ListGroup.Item>
-              <ListGroup.Item>{userShipmentInfo.addressTwo}</ListGroup.Item>
+              {userShipmentInfo.addressTwo ? (
+                <ListGroup.Item>{userShipmentInfo.addressTwo}</ListGroup.Item>
+              ) : null}
             </ListGroup>
           </Col>
         </Row>

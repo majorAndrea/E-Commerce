@@ -67,7 +67,7 @@ const CheckoutStepOne = ({
       <motion.div
         initial={{ x: "+100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3, stiffness: 150 }}
+        transition={{ stiffness: 150 }}
         className="m-0 p-0"
       >
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -132,6 +132,9 @@ const CheckoutStepOne = ({
               </Form.Group>
             </Col>
           </Row>
+          <p className="text-muted mb-0">
+            We will never share your personal information with anyone else.
+          </p>
           <div className="d-flex justify-content-end">
             <Button className="d-block" variant="success" type="submit">
               Continue

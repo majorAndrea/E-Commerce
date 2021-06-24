@@ -97,7 +97,7 @@ const CheckoutStepTwo = ({ setCheckoutShipmentInfo, userShipmentInfo }) => {
       <motion.div
         initial={{ x: "+100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3, stiffness: 150 }}
+        transition={{ stiffness: 150 }}
         className="m-0 p-0"
       >
         <Form noValidate onSubmit={handleSubmit}>
@@ -233,7 +233,11 @@ const CheckoutStepTwo = ({ setCheckoutShipmentInfo, userShipmentInfo }) => {
           </Row>
 
           <Form.Group className="mb-3" controlId="formGridAddress1">
-            <Form.Label>Address</Form.Label>
+            <Form.Label className="mb-0">Address</Form.Label>
+            <Form.Text id="addressOne" muted>
+              Please double-check your address to see if is correct before
+              proceeding.
+            </Form.Text>
             <Form.Control
               type="text"
               placeholder="1234 Main St"
@@ -243,6 +247,7 @@ const CheckoutStepTwo = ({ setCheckoutShipmentInfo, userShipmentInfo }) => {
               isInvalid={validated && userLocation.addressOne.length === 0}
               isValid={validated && userLocation.addressOne}
               value={userLocation.addressOne}
+              aria-describedby="addressOne"
             />
             <Form.Control.Feedback>OK!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
@@ -252,17 +257,19 @@ const CheckoutStepTwo = ({ setCheckoutShipmentInfo, userShipmentInfo }) => {
 
           <Form.Group className="mb-3" controlId="formGridAddress2">
             <Form.Label className="mb-0">Address 2</Form.Label>
-            <span className="text-muted d-block m-0 mt-1 mb-2">Optional</span>
+            <Form.Text id="addressTwoOptional" muted>
+              This field is optional
+            </Form.Text>
             <Form.Control
               type="text"
               placeholder="Apartment, studio, or floor"
               data-loctype="addressTwo"
               onChange={handleChange}
               value={userLocation.addressTwo}
+              aria-describedby="addressTwoOptional"
             />
           </Form.Group>
-
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between mt-4">
             <Button variant="dark" type="button" onClick={handleGoBack}>
               Go Back
             </Button>

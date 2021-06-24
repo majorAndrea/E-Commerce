@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const CardStyle = styled.section`
-  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   height: 420px;
