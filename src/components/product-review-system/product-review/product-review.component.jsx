@@ -12,8 +12,9 @@ import {
   usersReviewsSelector,
 } from "../../../redux/reviews/reviews.selectors";
 
-// TODO: After completing all the functionality move this
-// effect etc. to the product-review-reviews component.
+// This redux flow of fetching of reviews maybe should be moved in the ProductReviewReviews component
+// to make it more reusable and to handle eventual errors more nicely, but I think for this App it
+// make more sense to leave the logic just here.
 const ProductReview = ({ fetchReviewsFromDb, isFetchingReviews, reviews }) => {
   const { superCategory, category, productId } = useParams();
 

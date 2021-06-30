@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import CheckoutStepOne from "../../components/checkout-steps/step-one/checkout-step-one.component";
-import CheckoutStepTwo from "../../components/checkout-steps/step-two/checkout-step-two.component";
+import CheckoutStepTwoContainer from "../../components/checkout-steps/step-two/checkout-step-two.container";
 import CheckoutStepThree from "../../components/checkout-steps/step-three/checkout-step-three.component";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -57,7 +57,7 @@ const Checkout = ({ checkoutInfoPersonal, checkoutInfoShipment }) => {
             path="/checkout/steps/two"
             render={() =>
               checkoutInfoPersonal.email.length ? (
-                <CheckoutStepTwo />
+                <CheckoutStepTwoContainer />
               ) : (
                 <Redirect to="/checkout/steps/one" />
               )
