@@ -4,6 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import {
   ProductReviewReviewsHeading,
   ReviewsContainer,
+  NoReviewsSpan,
 } from "./product-review-reviews.styles";
 import UserProductReview from "../product-user-review/product-user-review.component";
 
@@ -21,9 +22,9 @@ const ProductReviewReviews = ({ reviews }) => {
             />
           ))
         ) : (
-          <span className="text-muted mt-3 mb-3 p-3">
+          <NoReviewsSpan className="mt-3 mb-3 p-3">
             This article does not have any reviews.
-          </span>
+          </NoReviewsSpan>
         )}
       </ReviewsContainer>
     </>

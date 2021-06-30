@@ -7,6 +7,7 @@ import {
   ProductReviewFormHeading,
   SubmitReviewBtnContainer,
   ReviewTextareaNoCurrentUserStyle,
+  PlaceholderSyle,
 } from "./product-review-form.styles";
 import { addReviewToDb } from "../../../redux/reviews/reviews.actions";
 import { createStructuredSelector } from "reselect";
@@ -123,8 +124,9 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
         </Form.Group>
         <Form.Group controlId="textAreaFormControl">
           <Form.Label hidden>Write your review here:</Form.Label>
-          <Form.Control
+          <PlaceholderSyle
             required
+            className="form-control"
             as="textarea"
             rows={5}
             placeholder="Write here your review."
@@ -134,8 +136,9 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
             onChange={(e) =>
               setReviewDetails({ ...reviewDetails, text: e.target.value })
             }
-          />
+          ></PlaceholderSyle>
         </Form.Group>
+
         <SubmitReviewBtnContainer>
           <Button variant="dark" type="submit">
             Submit
@@ -144,7 +147,7 @@ const ProductReviewForm = ({ addReviewToDb, currentUser }) => {
       </Form>
     </>
   ) : (
-    <ReviewTextareaNoCurrentUserStyle className="card text-muted">
+    <ReviewTextareaNoCurrentUserStyle className="card">
       <span> To leave a review please log in.</span>
     </ReviewTextareaNoCurrentUserStyle>
   );

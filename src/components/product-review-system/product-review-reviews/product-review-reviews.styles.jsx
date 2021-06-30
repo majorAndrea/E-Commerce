@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProductReviewReviewsHeading = styled.h3`
   font-weight: lighter;
-  font-size: xx-large;
+  font-size: x-large;
   display: block;
   margin-bottom: 0.5rem;
 `;
@@ -14,4 +14,8 @@ export const ReviewsContainer = styled.div`
   .list-group-item:nth-child(2n) {
     background-color: #f8f9fa;
   }
+`;
+
+export const NoReviewsSpan = styled.span`
+  font-weight: lighter;
 `;
