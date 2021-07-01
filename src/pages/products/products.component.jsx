@@ -14,7 +14,7 @@ const Products = ({
 }) => {
   return (
     <Container as="section">
-      <h2>
+      <h2 className="mb-2">
         {category.replace(category.charAt(0), category.charAt(0).toUpperCase())}
       </h2>
 

@@ -19,5 +19,5 @@ export const UserButtons = styled.div`
 `;
 
 export const NavBarStyles = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;

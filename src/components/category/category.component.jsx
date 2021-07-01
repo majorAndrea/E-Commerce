@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 const Category = ({ categoryName, productsFiltered }) => {
   return (
     <section className="mb-3">
-      <h2>{categoryName}</h2>
+      <h2 className="mb-2">{categoryName}</h2>
       <Row as="section">
         {productsFiltered.map((category) => {
           return (
