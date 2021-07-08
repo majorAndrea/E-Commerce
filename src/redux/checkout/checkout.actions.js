@@ -28,3 +28,17 @@ export const setCheckoutShipmentInfo = (payload) => ({
   type: CheckoutActionTypes.SET_CHECKOUT_SHIPMENT_INFO,
   payload,
 });
+
+export const setCheckoutUserInfoToDb = (payload) => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB,
+  payload,
+});
+
+export const setCheckoutUserInfoToDbSuccess = () => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB_SUCCESS,
+});
+
+export const setCheckoutUserInfoToDbFail = (payload) => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB_FAIL,
+  payload,
+});

@@ -16,7 +16,7 @@ const CheckoutStepTwo = ({
   userLocation,
 }) => {
   return (
-    <Col xs="12" md="6" lg="5">
+    <Col xs="12" md="6">
       <motion.div
         initial={{ x: "+100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
