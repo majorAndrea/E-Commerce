@@ -8,7 +8,7 @@ export const checkoutSelector = createSelector(
 );
 
 export const checkoutStartSelector = createSelector(
-  [selectCheckout],
+  [checkoutSelector],
   (checkout) => checkout.start
 );
 
@@ -28,11 +28,11 @@ export const checkoutCancelSelector = createSelector(
 );
 
 export const selectCheckoutInfoPersonal = createSelector(
-  [selectCheckout],
+  [checkoutSelector],
   (checkout) => checkout.checkoutPersonal
 );
 
 export const selectCheckoutInfoShipment = createSelector(
-  [selectCheckout],
+  [checkoutSelector],
   (checkout) => checkout.checkoutShipment
 );

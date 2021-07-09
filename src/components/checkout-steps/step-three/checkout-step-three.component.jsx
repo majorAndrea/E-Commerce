@@ -4,7 +4,7 @@ import {
   selectCheckoutInfoPersonal,
   selectCheckoutInfoShipment,
 } from "../../../redux/checkout/checkout.selectors";
-import { setCheckoutUserInfoToDb } from "../../../redux/checkout/checkout.actions";
+import { setCheckoutUserShipmentInfoToDb } from "../../../redux/checkout/checkout.actions";
 import { selectCurrentUser } from "../../../redux/user/user.selectors.js";
 import { createStructuredSelector } from "reselect";
 import { useHistory } from "react-router";
@@ -18,11 +18,12 @@ import { motion } from "framer-motion";
 const CheckoutStepThree = ({
   userPersonalInfo,
   userShipmentInfo,
-  setCheckoutUserInfoToDb,
+  setCheckoutUserShipmentInfoToDb,
   currentUser,
 }) => {
   const history = useHistory();
-  const [saveUserInfoToDb, setSaveUserInfoToDb] = useState(false);
+  const [saveUserShipmentInfoToDb, setSaveUserShipmentInfoToDb] =
+    useState(false);
 
   const handleGoBack = () => {
     history.push(`/checkout/steps/two`);
@@ -30,10 +31,9 @@ const CheckoutStepThree = ({
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (saveUserInfoToDb) {
-      setCheckoutUserInfoToDb({
+    if (saveUserShipmentInfoToDb) {
+      setCheckoutUserShipmentInfoToDb({
         id: currentUser.id,
-        personal: userPersonalInfo,
         shipment: userShipmentInfo,
       });
     }
@@ -92,10 +92,12 @@ const CheckoutStepThree = ({
           <Form.Check
             type="switch"
             id="custom-switch"
-            checked={saveUserInfoToDb}
-            label="Save Personal & Shipment information on the account"
+            checked={saveUserShipmentInfoToDb}
+            label="Save shipment information on the account"
             className="align-self-center"
-            onChange={() => setSaveUserInfoToDb(!saveUserInfoToDb)}
+            onChange={() =>
+              setSaveUserShipmentInfoToDb(!saveUserShipmentInfoToDb)
+            }
           />
         </aside>
       </motion.div>
@@ -110,8 +112,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCheckoutUserInfoToDb: (userInfo) =>
-    dispatch(setCheckoutUserInfoToDb(userInfo)),
+  setCheckoutUserShipmentInfoToDb: (userInfo) =>
+    dispatch(setCheckoutUserShipmentInfoToDb(userInfo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutStepThree);

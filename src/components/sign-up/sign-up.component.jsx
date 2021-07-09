@@ -11,7 +11,8 @@ import {
 
 const SignUp = ({ signUpStart }) => {
   const [userDetails, setUserDetails] = useState({
-    displayName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     confirm_password: "",
@@ -26,10 +27,14 @@ const SignUp = ({ signUpStart }) => {
     switch (type) {
       case "username":
       case "displayName":
+      case "firstname":
+      case "lastname":
         if (data.length >= 3 && data.length <= 16) {
           return true;
         } else {
-          throw new Error("Username must be between 3 and 16 characters!");
+          throw new Error(
+            "Firstname and Lastname must be between 3 and 16 characters!"
+          );
         }
       case "password":
         if (Array.isArray(data)) {
@@ -60,14 +65,18 @@ const SignUp = ({ signUpStart }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, confirm_password, displayName } = userDetails;
+    const { email, password, confirm_password, firstname, lastname } =
+      userDetails;
+    const displayName = firstname + " " + lastname;
     try {
-      validate("username", displayName);
+      validate("firstname", firstname);
+      validate("lastname", lastname);
       validate("email", email);
       validate("password", [password, confirm_password]);
       signUpStart({ email, password, displayName });
       setUserDetails({
-        displayName: "",
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
         confirm_password: "",
@@ -89,21 +98,35 @@ const SignUp = ({ signUpStart }) => {
           <h2>Sign Up</h2>
         </Card.Title>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="up-username">
-            <Form.Label>Username</Form.Label>
+          <Form.Group controlId="up-firstname">
+            <Form.Label>First name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter an username"
-              name="displayName"
+              placeholder="Enter your first name"
+              name="firstName"
               onChange={(e) =>
-                setUserDetails({ ...userDetails, displayName: e.target.value })
+                setUserDetails({ ...userDetails, firstname: e.target.value })
               }
-              value={userDetails.displayName}
+              value={userDetails.firstname}
               required
             />
           </Form.Group>
 
-          <Form.Group controlId="up-email">
+          <Form.Group controlId="up-lastname">
+            <Form.Label>Last name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your last name"
+              name="lastName"
+              onChange={(e) =>
+                setUserDetails({ ...userDetails, lastname: e.target.value })
+              }
+              value={userDetails.lastname}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group controlId="up-email" className="mb-2">
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
@@ -149,10 +172,6 @@ const SignUp = ({ signUpStart }) => {
               value={userDetails.confirm_password}
               required
             />
-          </Form.Group>
-
-          <Form.Group controlId="up-checkbox">
-            <Form.Check type="checkbox" label="I like this checkbox" />
           </Form.Group>
 
           <Button variant="success" type="submit">

@@ -10,10 +10,10 @@ export const selectCartProducts = createSelector(
 export const selectCartTotal = createSelector(
   [selectCartProducts],
   (cartProducts) =>
-    cartProducts.reduce(
-      (total, product) =>
-        Number.parseFloat((total += product.price * product.qty)).toFixed(2),
-      0
+    Number.parseFloat(
+      cartProducts
+        .reduce((total, product) => (total += product.price * product.qty), 0)
+        .toFixed(2)
     )
 );
 

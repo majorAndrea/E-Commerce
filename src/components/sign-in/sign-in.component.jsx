@@ -116,9 +116,6 @@ const SignIn = ({ signInWithGoogle, signInWithEmail }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="in-checkbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
           <Button variant="success" type="submit" block>
             Sign In
           </Button>

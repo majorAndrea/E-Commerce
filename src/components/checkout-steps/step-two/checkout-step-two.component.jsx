@@ -11,9 +11,13 @@ const CheckoutStepTwo = ({
   handleSubmit,
   handleGoBack,
   handleChange,
+  handleSwitch,
   validated,
   locations,
   userLocation,
+  useCheckoutUserShipmentInfoFromDb,
+  currentUser,
+  showNoUserShipmentInfoError,
 }) => {
   return (
     <Col xs="12" md="6">
@@ -201,6 +205,35 @@ const CheckoutStepTwo = ({
             </Button>
           </div>
         </Form>
+        <hr />
+        <aside>
+          <Form.Check
+            disabled={!!!currentUser}
+            type="switch"
+            id="custom-switch"
+            checked={useCheckoutUserShipmentInfoFromDb}
+            label={
+              useCheckoutUserShipmentInfoFromDb
+                ? "Disable auto-filling of shipment address"
+                : "Enable auto-filling of shipment address"
+            }
+            className="align-self-center"
+            onChange={handleSwitch}
+            aria-describedby={
+              showNoUserShipmentInfoError ? "no-shipment-address" : null
+            }
+          />
+
+          {showNoUserShipmentInfoError ? (
+            <p className="text-danger small pt-1">
+              You don't have saved any shipment address into your account.
+              <br /> To create one please fill all fields on top and then in the
+              next
+              <br />
+              page you will able to save the shipment address.
+            </p>
+          ) : null}
+        </aside>
       </motion.div>
     </Col>
   );

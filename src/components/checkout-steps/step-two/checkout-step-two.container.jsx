@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
-import { setCheckoutShipmentInfo } from "../../../redux/checkout/checkout.actions";
+import {
+  setCheckoutShipmentInfo,
+  fetchCheckoutUserShipmentInfoFromDb,
+} from "../../../redux/checkout/checkout.actions";
 import { useHistory } from "react-router-dom";
 import csc from "country-state-city";
 import { createStructuredSelector } from "reselect";
 import { selectCheckoutInfoShipment } from "../../../redux/checkout/checkout.selectors";
+import { selectCurrentUser } from "../../../redux/user/user.selectors";
 
 import CheckoutStepTwo from "./checkout-step-two.component";
 
 const CheckoutStepTwoContainer = ({
   setCheckoutShipmentInfo,
   userShipmentInfo,
+  currentUser,
+  fetchCheckoutUserShipmentInfoFromDb,
 }) => {
   const history = useHistory();
 
@@ -26,6 +32,14 @@ const CheckoutStepTwoContainer = ({
   });
 
   const [validated, setValidated] = useState(false);
+
+  const [showNoUserShipmentInfoError, setShowNoUserShipmentInfoError] =
+    useState(false);
+
+  const [
+    useCheckoutUserShipmentInfoFromDb,
+    setUseCheckoutUserShipmentInfoFromDb,
+  ] = useState(false);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -59,8 +73,28 @@ const CheckoutStepTwoContainer = ({
       setLocations((prevState) => ({ ...prevState, cities }));
     };
 
+    if (
+      userShipmentInfo.country.length > 0 &&
+      useCheckoutUserShipmentInfoFromDb
+    ) {
+      setUserLocation(userShipmentInfo);
+    }
+
+    // TODO: Improve this.
+    if (!userShipmentInfo.country.length && useCheckoutUserShipmentInfoFromDb) {
+      setShowNoUserShipmentInfoError(true);
+    }
+
     fetchCountries();
-  }, [userLocation.country, userLocation.state]);
+  }, [
+    userLocation.country,
+    userLocation.state,
+    userLocation.city,
+    currentUser,
+    useCheckoutUserShipmentInfoFromDb,
+    fetchCheckoutUserShipmentInfoFromDb,
+    userShipmentInfo,
+  ]);
 
   const handleChange = async ({ target }) => {
     const locType = target.getAttribute("data-loctype");
@@ -91,14 +125,37 @@ const CheckoutStepTwoContainer = ({
     }
   };
 
+  const handleSwitch = ({ target: { checked } }) => {
+    setUseCheckoutUserShipmentInfoFromDb(!useCheckoutUserShipmentInfoFromDb);
+    if (checked) {
+      return fetchCheckoutUserShipmentInfoFromDb(currentUser.id);
+    }
+    setUserLocation({
+      country: "",
+      state: "",
+      city: "",
+      zipCode: "",
+      addressOne: "",
+      addressTwo: "",
+    });
+    setShowNoUserShipmentInfoError(false);
+  };
+
   return (
     <CheckoutStepTwo
       handleSubmit={handleSubmit}
       handleGoBack={handleGoBack}
       handleChange={handleChange}
+      handleSwitch={handleSwitch}
       validated={validated}
       locations={locations}
       userLocation={userLocation}
+      useCheckoutUserShipmentInfoFromDb={useCheckoutUserShipmentInfoFromDb}
+      setUseCheckoutUserShipmentInfoFromDb={
+        setUseCheckoutUserShipmentInfoFromDb
+      }
+      currentUser={currentUser}
+      showNoUserShipmentInfoError={showNoUserShipmentInfoError}
     />
   );
 };
@@ -106,10 +163,13 @@ const CheckoutStepTwoContainer = ({
 const mapDispatchToProps = (dispatch) => ({
   setCheckoutShipmentInfo: (userLocation) =>
     dispatch(setCheckoutShipmentInfo(userLocation)),
+  fetchCheckoutUserShipmentInfoFromDb: (userId) =>
+    dispatch(fetchCheckoutUserShipmentInfoFromDb(userId)),
 });
 
 const mapStateToProps = createStructuredSelector({
   userShipmentInfo: selectCheckoutInfoShipment,
+  currentUser: selectCurrentUser,
 });
 
 export default connect(

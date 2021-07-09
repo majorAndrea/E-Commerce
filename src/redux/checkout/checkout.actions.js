@@ -29,16 +29,31 @@ export const setCheckoutShipmentInfo = (payload) => ({
   payload,
 });
 
-export const setCheckoutUserInfoToDb = (payload) => ({
-  type: CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB,
+export const setCheckoutUserShipmentInfoToDb = (payload) => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_USER_SHIPMENT_INFO_TO_DB,
   payload,
 });
 
-export const setCheckoutUserInfoToDbSuccess = () => ({
-  type: CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB_SUCCESS,
+export const setCheckoutUserShipmentInfoToDbSuccess = () => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_USER_SHIPMENT_INFO_TO_DB_SUCCESS,
 });
 
-export const setCheckoutUserInfoToDbFail = (payload) => ({
-  type: CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB_FAIL,
+export const setCheckoutUserShipmentInfoToDbFail = (payload) => ({
+  type: CheckoutActionTypes.SET_CHECKOUT_USER_SHIPMENT_INFO_TO_DB_FAIL,
+  payload,
+});
+
+export const fetchCheckoutUserShipmentInfoFromDb = (payload) => ({
+  type: CheckoutActionTypes.FETCH_CHECKOUT_USER_SHIPMENT_INFO_FROM_DB,
+  payload,
+});
+
+export const fetchCheckoutUserShipmentInfoFromDbSuccess = (payload) => ({
+  type: CheckoutActionTypes.FETCH_CHECKOUT_USER_SHIPMENT_INFO_FROM_DB_SUCCESS,
+  payload,
+});
+
+export const fetchCheckoutUserShipmentInfoFromDbFail = (payload) => ({
+  type: CheckoutActionTypes.FETCH_CHECKOUT_USER_SHIPMENT_INFO_FROM_DB_FAIL,
   payload,
 });

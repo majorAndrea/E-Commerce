@@ -1,10 +1,12 @@
 import { takeLatest, call, all, put } from "redux-saga/effects";
-import { firestore } from "../../firebase/";
+import { firestore, checkIfUserExistsOnDb } from "../../firebase/";
 import CheckoutActionTypes from "./checkout.types";
 import { emptyCart } from "../cart/cart.actions";
 import {
-  setCheckoutUserInfoToDbFail,
-  setCheckoutUserInfoToDbSuccess,
+  setCheckoutUserShipmentInfoToDbFail,
+  setCheckoutUserShipmentInfoToDbSuccess,
+  fetchCheckoutUserShipmentInfoFromDbSuccess,
+  fetchCheckoutUserShipmentInfoFromDbFail,
 } from "../checkout/checkout.actions";
 
 const checkoutSuccess = function* ({ payload }) {
@@ -33,27 +35,43 @@ const checkoutSuccess = function* ({ payload }) {
   }
 };
 
-const checkoutSaveUserInfoToDb = function* ({ payload }) {
+const checkoutSaveUserShipmentInfoToDb = function* ({ payload }) {
   try {
     const { id, ...others } = yield payload;
     const userRef = yield firestore.collection("users").doc(id);
     const userSnapShot = yield userRef.get();
     if (userSnapShot.exists) {
       yield userRef.update({
-        personalAndShipmentInfo: {
+        shipmentInfo: {
           ...others,
         },
       });
-      yield put(setCheckoutUserInfoToDbSuccess());
+      yield put(setCheckoutUserShipmentInfoToDbSuccess());
     } else {
-      yield put(
-        setCheckoutUserInfoToDbFail(
-          "Can't save user checkout informations on the DB, user does not exists."
-        )
+      throw new Error(
+        "Can't save user checkout information on the DB, user does not exists."
       );
     }
   } catch (error) {
-    yield put(setCheckoutUserInfoToDbFail(error));
+    yield put(setCheckoutUserShipmentInfoToDbFail(error));
+  }
+};
+
+const fetchCheckoutUserShipmentInfoFromDb = function* ({ payload: userId }) {
+  try {
+    const userSnapShot = yield call(checkIfUserExistsOnDb, userId);
+    if (userSnapShot) {
+      const {
+        shipmentInfo: { shipment },
+      } = yield userSnapShot.data();
+      yield put(fetchCheckoutUserShipmentInfoFromDbSuccess(shipment));
+    } else {
+      throw new Error(
+        "Can't retrive user checkout information from the DB, user does not exists."
+      );
+    }
+  } catch (error) {
+    yield put(fetchCheckoutUserShipmentInfoFromDbFail(error));
   }
 };
 
@@ -64,13 +82,23 @@ const onCheckoutSuccess = function* () {
   );
 };
 
-const onCheckoutSaveUserInfotoDb = function* () {
+const onCheckoutSaveUserShipmentInfotoDb = function* () {
   yield takeLatest(
-    CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB,
-    checkoutSaveUserInfoToDb
+    CheckoutActionTypes.SET_CHECKOUT_USER_SHIPMENT_INFO_TO_DB,
+    checkoutSaveUserShipmentInfoToDb
   );
 };
 
+const onFetchCheckoutUserShipmentInfoFromDb = function* () {
+  yield takeLatest(
+    CheckoutActionTypes.FETCH_CHECKOUT_USER_SHIPMENT_INFO_FROM_DB,
+    fetchCheckoutUserShipmentInfoFromDb
+  );
+};
 export const checkoutSagas = function* () {
-  yield all([call(onCheckoutSuccess), call(onCheckoutSaveUserInfotoDb)]);
+  yield all([
+    call(onCheckoutSuccess),
+    call(onCheckoutSaveUserShipmentInfotoDb),
+    call(onFetchCheckoutUserShipmentInfoFromDb),
+  ]);
 };

@@ -36,8 +36,8 @@ export const ProductImageContainer = styled.img`
   height: 150px;
 
   img {
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     object-position: 50% 50%;
   }

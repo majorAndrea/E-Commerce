@@ -52,16 +52,31 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
         ...state,
         checkoutShipment: { ...action.payload },
       };
-    case CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB_SUCCESS: {
+    case CheckoutActionTypes.SET_CHECKOUT_USER_SHIPMENT_INFO_TO_DB_SUCCESS: {
       return {
         ...state,
         success: true,
+        failure: null,
       };
     }
-    case CheckoutActionTypes.SET_CHECKOUT_USER_INFO_TO_DB_FAIL: {
+    case CheckoutActionTypes.SET_CHECKOUT_USER_SHIPMENT_INFO_TO_DB_FAIL: {
       return {
         ...state,
         failure: action.payload,
+        success: null,
+      };
+    }
+    case CheckoutActionTypes.FETCH_CHECKOUT_USER_SHIPMENT_INFO_FROM_DB_SUCCESS: {
+      return {
+        ...state,
+        checkoutShipment: { ...action.payload },
+      };
+    }
+    case CheckoutActionTypes.FETCH_CHECKOUT_USER_SHIPMENT_INFO_FROM_DB_FAIL: {
+      return {
+        ...state,
+        failure: action.payload,
+        success: null,
       };
     }
     default:

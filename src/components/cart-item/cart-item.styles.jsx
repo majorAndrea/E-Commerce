@@ -22,8 +22,7 @@ export const ProductThumbnailContainer = styled.div`
 export const ProductThumbnail = styled.img`
   height: 100%;
   width: 100%;
-  object-fit: contain;
-  object-position: 50% 50%;
+  object-fit: cover;
 `;
 
 export const ProductInfo = styled.div`

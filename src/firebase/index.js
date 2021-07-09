@@ -49,6 +49,15 @@ export const isUserLoggedIn = () => {
   });
 };
 
+export const checkIfUserExistsOnDb = (id) => {
+  return new Promise(async (resolve, reject) => {
+    const userRef = await firestore.collection("users").doc(id);
+    const userSnapShot = await userRef.get();
+    if (userSnapShot.exists) return resolve(userSnapShot);
+    else return reject(null);
+  });
+};
+
 export const createCollectionsAndDocs = async (collectionKey, objects) => {
   return new Promise(async (resolve, reject) => {
     const collectionRef = firestore.collection(collectionKey);
