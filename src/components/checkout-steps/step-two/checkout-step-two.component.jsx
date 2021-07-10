@@ -20,7 +20,7 @@ const CheckoutStepTwo = ({
   showNoUserShipmentInfoError,
 }) => {
   return (
-    <Col xs="12" md="6">
+    <Col xs="12" md="6" className="mt-0 mt-md-2">
       <motion.div
         initial={{ x: "+100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}

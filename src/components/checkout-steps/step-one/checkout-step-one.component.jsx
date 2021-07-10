@@ -19,10 +19,13 @@ const CheckoutStepOne = ({
   const history = useHistory();
   const [validated, setValidated] = useState(false);
   const [autoFilling, setAutoFilling] = useState(
-    !!checkoutPersonalInfo.email.length
+    checkoutPersonalInfo.email.length || false
   );
 
   const [userPersonalInfo, setUserPersonalInfo] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
     ...checkoutPersonalInfo,
   });
 
@@ -63,7 +66,7 @@ const CheckoutStepOne = ({
   };
 
   return (
-    <Col xs="12" md="6" lg="6">
+    <Col xs="12" md="6" className="mt-0 mt-md-2">
       <motion.div
         initial={{ x: "+100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}

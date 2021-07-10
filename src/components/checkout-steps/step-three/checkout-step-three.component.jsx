@@ -41,14 +41,14 @@ const CheckoutStepThree = ({
   };
 
   return (
-    <Col xs={12} lg={6}>
+    <Col xs={12} lg={6} className="mt-0 mt-md-2">
       <motion.div
         initial={{ x: "+100vw", opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ stiffness: 150 }}
         className="m-0 p-0"
       >
-        <Row className="mt-3">
+        <Row>
           <Col className="mb-3 mb-sm-0" xs={12} sm={6}>
             <h5>Personal</h5>
             <ListGroup variant="flush">

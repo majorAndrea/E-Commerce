@@ -27,7 +27,7 @@ const Checkout = ({ checkoutInfoPersonal, checkoutInfoShipment }) => {
   };
 
   return (
-    <Container>
+    <Container className="mt-1 mb-4">
       <Row>
         <Col as="section">
           <div className="d-flex flex-column justify-content-between">

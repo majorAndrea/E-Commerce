@@ -8,7 +8,10 @@ import {
 import { useHistory } from "react-router-dom";
 import csc from "country-state-city";
 import { createStructuredSelector } from "reselect";
-import { selectCheckoutInfoShipment } from "../../../redux/checkout/checkout.selectors";
+import {
+  selectCheckoutInfoShipment,
+  selectCheckoutFailure,
+} from "../../../redux/checkout/checkout.selectors";
 import { selectCurrentUser } from "../../../redux/user/user.selectors";
 
 import CheckoutStepTwo from "./checkout-step-two.component";
@@ -18,6 +21,7 @@ const CheckoutStepTwoContainer = ({
   userShipmentInfo,
   currentUser,
   fetchCheckoutUserShipmentInfoFromDb,
+  checkoutFailure,
 }) => {
   const history = useHistory();
 
@@ -28,6 +32,12 @@ const CheckoutStepTwoContainer = ({
   });
 
   const [userLocation, setUserLocation] = useState({
+    country: "",
+    state: "",
+    city: "",
+    zipCode: "",
+    addressOne: "",
+    addressTwo: "",
     ...userShipmentInfo,
   });
 
@@ -39,7 +49,7 @@ const CheckoutStepTwoContainer = ({
   const [
     useCheckoutUserShipmentInfoFromDb,
     setUseCheckoutUserShipmentInfoFromDb,
-  ] = useState(false);
+  ] = useState(userShipmentInfo.country.length || false);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -81,7 +91,7 @@ const CheckoutStepTwoContainer = ({
     }
 
     // TODO: Improve this.
-    if (!userShipmentInfo.country.length && useCheckoutUserShipmentInfoFromDb) {
+    if (!!checkoutFailure && useCheckoutUserShipmentInfoFromDb) {
       setShowNoUserShipmentInfoError(true);
     }
 
@@ -94,6 +104,7 @@ const CheckoutStepTwoContainer = ({
     useCheckoutUserShipmentInfoFromDb,
     fetchCheckoutUserShipmentInfoFromDb,
     userShipmentInfo,
+    checkoutFailure,
   ]);
 
   const handleChange = async ({ target }) => {
@@ -170,6 +181,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
   userShipmentInfo: selectCheckoutInfoShipment,
   currentUser: selectCurrentUser,
+  checkoutFailure: selectCheckoutFailure,
 });
 
 export default connect(
