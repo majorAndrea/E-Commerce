@@ -14,6 +14,8 @@ export const CheckoutHeader = styled.section`
   background-color: #f8f9fa;
   color: black;
   text-align: center;
+  font-size: large;
+  font-weight: 300;
 `;
 
 export const CheckoutFooter = styled.section`

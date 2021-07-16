@@ -11,6 +11,8 @@ export const CategoryName = styled.h3`
   font-size: larger;
   color: azure;
   cursor: pointer;
+  font-weight: 400;
+  text-shadow: 1px 1px 2px black;
 `;
 
 export const Background = styled.div`

@@ -16,7 +16,7 @@ export const ProductThumbnailContainer = styled.div`
   flex-basis: 35%;
   display: flex;
   height: 70px;
-  margin-right: 0.2rem;
+  margin-right: 0.5rem;
 `;
 
 export const ProductThumbnail = styled.img`

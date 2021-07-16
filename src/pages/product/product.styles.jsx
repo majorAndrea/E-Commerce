@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components";
 
 const headingStyle = css`
-  font-weight: lighter;
+  font-weight: 200;
   font-size: x-large;
 `;
 
 const fontLargerAndLighter = css`
   font-size: normal;
-  font-weight: lighter;
+  font-weight: 200;
 `;
 
 export const ProductImage = styled.img`

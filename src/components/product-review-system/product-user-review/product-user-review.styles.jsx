@@ -9,11 +9,11 @@ export const RatingStarsStyle = styled.p`
 
 export const ReviewsUsernameStyle = styled.span`
   font-size: large;
-  font-weight: lighter;
+  font-weight: 200;
 `;
 
 export const ReviewsTextStyle = styled.span`
   display: block;
   font-size: small;
-  font-weight: lighter;
+  font-weight: 200;
 `;
