@@ -6,8 +6,9 @@ export const CardStyle = styled.section`
   height: 420px;
 `;
 
-export const CardHeading = styled.h5`
+export const CardHeading = styled.h3`
   font-weight: 300;
+  font-size: 1.5rem;
 `;
 
 export const CardImgWrapper = styled.div`
@@ -27,5 +28,5 @@ export const CardDescWrapper = styled.div`
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   overflow: scroll;
-  font-weight: 200;
+  font-weight: 300;
 `;

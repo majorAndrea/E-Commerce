@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductReviewReviewsHeading = styled.h3`
-  font-weight: 200;
+  font-weight: 300;
   font-size: x-large;
   display: block;
   margin-bottom: 0.5rem;
@@ -17,6 +17,6 @@ export const ReviewsContainer = styled.div`
 `;
 
 export const NoReviewsSpan = styled.span`
-  font-weight: 200;
+  font-weight: 300;
   font-size: normal;
 `;

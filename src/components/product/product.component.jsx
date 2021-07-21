@@ -12,7 +12,7 @@ import {
 
 const Product = ({ item, history, match, superCategory }) => {
   return (
-    <CardStyle as="article" className="card mb-4 mb-md-0 mt-1 shadow">
+    <CardStyle as="article" className="card mb-4 mb-md-0 mt-1 shadow mb-2">
       <CardImgWrapper>
         <ProductImg
           src={item.background_image}
