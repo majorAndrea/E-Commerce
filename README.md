@@ -22,6 +22,4 @@ Tech used:
 SIDE-NOTE: There are some mixed technologies in this project because I have created this project while learning React, Redux, Firebase, etc... and I like to experiment
 while learning new things and I learn really well and fast when I do practice.
 
--> This project is not 100% completed.
-
 LIVE VERSION: https://am-ecommerce.netlify.app/
