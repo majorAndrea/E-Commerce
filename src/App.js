@@ -11,6 +11,7 @@ import ErrorBoundary from "./components/error-boundary/error-boundary.component"
 import Footer from "./components/footer/footer.component.jsx";
 import Spinner from "./components/spinner/spinner.component";
 import CheckoutStepFinal from "./components/checkout-steps/step-final/checkout-step-final.component";
+
 import "./assets/styles/starability-basic-min.css";
 import "./App.css";
 

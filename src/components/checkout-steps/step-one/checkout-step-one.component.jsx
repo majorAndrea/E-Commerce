@@ -19,15 +19,15 @@ const CheckoutStepOne = ({
   const history = useHistory();
   const [validated, setValidated] = useState(false);
   const [autoFilling, setAutoFilling] = useState(
-    checkoutPersonalInfo.email.length || false
+    () => checkoutPersonalInfo.email.length || false
   );
 
-  const [userPersonalInfo, setUserPersonalInfo] = useState({
+  const [userPersonalInfo, setUserPersonalInfo] = useState(() => ({
     firstname: "",
     lastname: "",
     email: "",
     ...checkoutPersonalInfo,
-  });
+  }));
 
   const handleSubmit = (e) => {
     const form = e.currentTarget;
