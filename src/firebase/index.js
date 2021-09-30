@@ -42,9 +42,9 @@ export const createUserDocument = async ({ user, ...otherData }) => {
 
 export const isUserLoggedIn = () => {
   return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       unsubscribe();
-      resolve(user);
+      return resolve(user);
     }, reject);
   });
 };

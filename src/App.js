@@ -10,8 +10,6 @@ import { CustomAlertProvider } from "./providers/custom-alert/custom-alert.provi
 import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 import Footer from "./components/footer/footer.component.jsx";
 import Spinner from "./components/spinner/spinner.component";
-import CheckoutStepFinal from "./components/checkout-steps/step-final/checkout-step-final.component";
-import Checkout from "./pages/checkout/checkout.component";
 
 import "./assets/styles/starability-basic-min.css";
 import "./App.css";
@@ -20,8 +18,14 @@ const Main = React.lazy(() => import("./pages/main/main.component"));
 const SignInUp = React.lazy(() =>
   import("./pages/sign-in-up/sign-in-up.component")
 );
+const CheckoutStepFinal = React.lazy(() =>
+  import("./components/checkout-steps/step-final/checkout-step-final.component")
+);
 const CheckoutConfirm = React.lazy(() =>
   import("./pages/checkout-confirm/checkout-confirm.component")
+);
+const Checkout = React.lazy(() =>
+  import("./pages/checkout/checkout.component")
 );
 const Products = React.lazy(() =>
   import("./pages/products/products.component")
