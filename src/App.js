@@ -11,7 +11,7 @@ import ErrorBoundary from "./components/error-boundary/error-boundary.component"
 import Footer from "./components/footer/footer.component.jsx";
 import Spinner from "./components/spinner/spinner.component";
 import CheckoutStepFinal from "./components/checkout-steps/step-final/checkout-step-final.component";
-//import Checkout from "./pages/checkout/checkout.component";
+import Checkout from "./pages/checkout/checkout.component";
 
 import "./assets/styles/starability-basic-min.css";
 import "./App.css";
@@ -57,11 +57,11 @@ const App = ({ currentUser, isUserLoggedIn }) => {
                   component={CheckoutStepFinal}
                 />
 
-                {/* <Route
+                <Route
                   exact
                   path="/checkout/steps/:step"
                   component={Checkout}
-                /> */}
+                />
 
                 <Route
                   exact
