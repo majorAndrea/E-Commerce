@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 
 const SignInUp = () => {
   return (
-    <Container as="article" className="mt-2">
+    <Container as="article" className="mt-3">
       <Row>
         <Col xs={12} md={6}>
           <SignIn />

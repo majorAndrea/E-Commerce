@@ -12,7 +12,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container className="mb-3">
         <CategoryContainer categoryName="Technology" retrive="tech" />
         <CategoryContainer categoryName="Fashion" retrive="fashion" />
         <CategoryContainer categoryName="Forniture" retrive="forniture" />

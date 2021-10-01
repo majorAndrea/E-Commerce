@@ -37,14 +37,13 @@ const App = ({ currentUser, isUserLoggedIn }) => {
     isUserLoggedIn();
   }, [isUserLoggedIn]);
   return (
-    <div className="wrapper">
+    <>
       <Header />
       <ErrorBoundary>
         <CustomAlertProvider>
           <CustomAlert />
-
           <React.Suspense fallback={<Spinner />}>
-            <main>
+            <main className="wrapper">
               <Switch>
                 <Route exact path="/" component={Main} />
                 <Route
@@ -92,7 +91,7 @@ const App = ({ currentUser, isUserLoggedIn }) => {
         </CustomAlertProvider>
       </ErrorBoundary>
       <Footer />
-    </div>
+    </>
   );
 };
 

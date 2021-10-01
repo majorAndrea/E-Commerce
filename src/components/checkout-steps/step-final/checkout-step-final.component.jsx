@@ -20,7 +20,7 @@ import {
 
 const CheckoutStepFinal = ({ cartProducts, cartTotal, currentUser }) => {
   return (
-    <Container>
+    <Container className="mt-3">
       <CheckoutContainer as="article">
         <CheckoutHeader className="d-none d-md-flex">
           <Col>Preview</Col>

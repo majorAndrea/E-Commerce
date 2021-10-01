@@ -22,7 +22,7 @@ import ProductStars from "../../components/product-review-system/product-stars/p
 const Product = ({ product, addProductToCart, match }) => {
   return (
     <Container>
-      <Row as="article" className="mt-2">
+      <Row as="article" className="mt-3">
         <Col md={6}>
           <ProductImage
             as={Image}
