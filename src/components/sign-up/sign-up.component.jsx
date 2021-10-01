@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { connect } from "react-redux";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import { signUpStart } from "../../redux/user/user.actions.js";
 import {
   CustomAlertContext,
   DEFAULT_VALUES,
 } from "../../providers/custom-alert/custom-alert.provider";
+import FormInput from "../form-input/form-input.component.jsx";
+import { SignUpContainer, SignUpTitle } from "./sign-up.styles";
 
 const SignUp = ({ signUpStart }) => {
   const [userDetails, setUserDetails] = useState({
@@ -92,94 +92,80 @@ const SignUp = ({ signUpStart }) => {
   };
 
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>
-          <h2>Sign Up</h2>
-        </Card.Title>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="up-firstname">
-            <Form.Label>First name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your first name"
-              name="firstName"
-              onChange={(e) =>
-                setUserDetails({ ...userDetails, firstname: e.target.value })
-              }
-              value={userDetails.firstname}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group controlId="up-lastname">
-            <Form.Label>Last name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your last name"
-              name="lastName"
-              onChange={(e) =>
-                setUserDetails({ ...userDetails, lastname: e.target.value })
-              }
-              value={userDetails.lastname}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group controlId="up-email" className="mb-2">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              onChange={(e) =>
-                setUserDetails({ ...userDetails, email: e.target.value })
-              }
-              value={userDetails.email}
-              required
-            />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId="up-password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={(e) =>
-                setUserDetails({ ...userDetails, password: e.target.value })
-              }
-              value={userDetails.password}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group controlId="up-confirm-password">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm Password"
-              name="confirm_password"
-              onChange={(e) =>
-                setUserDetails({
-                  ...userDetails,
-                  confirm_password: e.target.value,
-                })
-              }
-              value={userDetails.confirm_password}
-              required
-            />
-          </Form.Group>
-
-          <Button variant="success" type="submit">
-            Sign Up
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <SignUpContainer className="mt-3 mt-lg-0 mb-4 mb-lg-0">
+      <SignUpTitle>I do not have a account</SignUpTitle>
+      <span>Sign up with your email and password</span>
+      <form className="sign-up-form" onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          name="firstname"
+          value={userDetails.firstname}
+          onChange={(e) =>
+            setUserDetails({
+              ...userDetails,
+              firstname: e.target.value,
+            })
+          }
+          label="Firstname"
+          required
+        />
+        <FormInput
+          type="text"
+          name="lastname"
+          value={userDetails.lastname}
+          onChange={(e) =>
+            setUserDetails({
+              ...userDetails,
+              lastname: e.target.value,
+            })
+          }
+          label="Lastname"
+          required
+        />
+        <FormInput
+          type="email"
+          name="email"
+          value={userDetails.email}
+          onChange={(e) =>
+            setUserDetails({
+              ...userDetails,
+              email: e.target.value,
+            })
+          }
+          label="Email"
+          required
+        />
+        <FormInput
+          type="password"
+          name="password"
+          value={userDetails.password}
+          onChange={(e) =>
+            setUserDetails({
+              ...userDetails,
+              password: e.target.value,
+            })
+          }
+          label="Password"
+          required
+        />
+        <FormInput
+          type="password"
+          name="confirmPassword"
+          value={userDetails.confirm_password}
+          onChange={(e) =>
+            setUserDetails({
+              ...userDetails,
+              confirm_password: e.target.value,
+            })
+          }
+          label="Confirm Password"
+          required
+        />
+        <Button type="submit" variant="dark" block>
+          Sign Up
+        </Button>
+      </form>
+    </SignUpContainer>
   );
 };
 

@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { connect } from "react-redux";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import {
   signInWithGoogle,
   signInWithEmail,
@@ -11,6 +9,14 @@ import {
   CustomAlertContext,
   DEFAULT_VALUES,
 } from "../../providers/custom-alert/custom-alert.provider";
+import {
+  SignInContainer,
+  SignInTitle,
+  ButtonsBarContainer,
+} from "./sign-in.styles";
+import FormInput from "../form-input/form-input.component.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const SignIn = ({ signInWithGoogle, signInWithEmail }) => {
   const [userCredentials, setUserCredentials] = useState({
@@ -75,57 +81,62 @@ const SignIn = ({ signInWithGoogle, signInWithEmail }) => {
   };
 
   return (
-    <Card>
-      <Card.Body id="in-card-body">
-        <Card.Title>
-          <h2>Sign In</h2>
-        </Card.Title>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="in-email">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              onChange={(e) =>
-                setUserCredentials({
-                  ...userCredentials,
-                  email: e.target.value,
-                })
-              }
-              value={userCredentials.email}
-            />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
+    <SignInContainer>
+      <SignInTitle>I already have an account</SignInTitle>
+      <span>Sign in with your email and password</span>
 
-          <Form.Group controlId="in-password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={(e) =>
-                setUserCredentials({
-                  ...userCredentials,
-                  password: e.target.value,
-                })
-              }
-              value={userCredentials.password}
-            />
-          </Form.Group>
-
-          <Button variant="success" type="submit" block>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="email"
+          type="email"
+          value={userCredentials.email}
+          onChange={(e) =>
+            setUserCredentials({
+              ...userCredentials,
+              email: e.target.value,
+            })
+          }
+          label="email"
+          required
+        />
+        <FormInput
+          name="password"
+          type="password"
+          value={userCredentials.password}
+          onChange={(e) =>
+            setUserCredentials({
+              ...userCredentials,
+              password: e.target.value,
+            })
+          }
+          label="password"
+          required
+        />
+        <ButtonsBarContainer>
+          <Button variant="dark" type="submit" block>
             Sign In
           </Button>
 
-          <Button variant="primary" type="button" block onClick={handleClick}>
+          <Button
+            variant="light"
+            type="button"
+            block
+            onClick={handleClick}
+            className="border mt-2"
+          >
+            <FontAwesomeIcon
+              icon={faGoogle}
+              size="1x"
+              role="link"
+              tabIndex="0"
+              title="Login with Google"
+              className="mr-2"
+            />
             Sign In with Google
           </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+        </ButtonsBarContainer>
+      </form>
+    </SignInContainer>
   );
 };
 
