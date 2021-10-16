@@ -3,6 +3,7 @@ node_modules
 
 #other folders
 /src/utils
+.idea/
 
 # env variables
 .env
